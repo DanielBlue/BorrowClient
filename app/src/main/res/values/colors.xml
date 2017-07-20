@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <color name="colorPrimary">#1A98FF</color>
+    <color name="colorPrimaryDark">#0689cd</color>
+    <color name="colorAccent">#ff6600</color>
+
+    <color name="color_white">#fff</color>
+    <color name="color_red">#ff0000</color>
+    <color name="color_black">#000</color>
+    <color name="color_divider">#f7f7f7</color>
+    <color name="color_text_hint">#c7c7cd</color>
+    <color name="color_text_light">#9fa0a0</color>
+    <color name="color_gray">#999999</color>
+
+    <color name="color_base_backgroud">#eeeff4</color>
+
+    <color name="color_gray_icon">#333333</color>
+    <color name="color_orange_light">#FFB385</color>
+    <color name="color_background">#F7F7F7</color>
+    <color name="white">#fff</color>
+    <color name="transparent">#00000000</color>
+    <color name="view_line">#1A98FF</color>
+    <color name="color_508ae6">#508ae6</color>
+    <color name="color_8e8e8e">#8e8e8e</color>
+    <color name="redhomeitem">#F65E5B</color>
+    <color name="decergreeitem">#969696</color>
+    <color name="bulluhomeitem">#3C7BC8</color>
+    <color name="color_ededed">#ededed</color>
+    <color name="textColorGray">#ff333b46</color>
+    <color name="color_f7f7f7">#f7f7f7</color>
+    <color name="color_323232">#323232</color>
+    <color name="black">#000</color>
+    <color name="color_989898">#989898</color>
+    <color name="bull5189e8">#5189e8</color>
+    <color name="color_e4e4e4">#e4e4e4</color>
+    <color name="color_e6e6e6">#e6e6e6</color>
+    <color name="color_282828">#282828</color>
+    <color name="color_fd6333">#fd6333</color>
+</resources>

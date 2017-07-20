@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <RadioGroup
+        android:id="@+id/rg_group"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_height"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/home_bottom_bg"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/tab_home_btn"
+            android:gravity="center"
+            android:paddingBottom="2dp"
+            android:paddingTop="7dp"
+            android:scaleType="matrix"
+            android:text="@string/home_tab_home"
+            android:textColor="@drawable/home_tab_textcolor"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/rb_borrow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/home_bottom_bg"
+            android:button="@null"
+            android:drawableTop="@drawable/tab_loan_btn"
+            android:gravity="center"
+            android:paddingBottom="2dp"
+            android:paddingTop="7dp"
+            android:scaleType="matrix"
+            android:text="@string/home_tab_loan"
+            android:textColor="@drawable/home_tab_textcolor"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/rb_self"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/home_bottom_bg"
+            android:button="@null"
+            android:drawableTop="@drawable/tab_self_btn"
+            android:gravity="center"
+            android:paddingBottom="2dp"
+            android:paddingTop="7dp"
+            android:scaleType="matrix"
+            android:text="@string/home_tab_self"
+            android:textColor="@drawable/home_tab_textcolor"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+</LinearLayout>
