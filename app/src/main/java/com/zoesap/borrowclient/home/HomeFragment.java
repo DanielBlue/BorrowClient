@@ -20,7 +20,6 @@ import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.AdapterContract;
 import com.zoesap.borrowclient.adapter.LoanRecommendListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
-import com.zoesap.borrowclient.chooseloan.ChooseLoanActivity;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.loandetail.LoanDetailActivity;
 import com.zoesap.borrowclient.util.DensityUtils;
@@ -145,7 +144,7 @@ public class HomeFragment extends Fragment implements HomeContract.View{
             case R.id.rl_job:
             case R.id.rl_credit:
             case R.id.rl_loan_fast:
-                startActivity(ChooseLoanActivity.getStartIntent(getActivity()));
+                ((HomeActivity)getActivity()).rgGroup.check(R.id.rb_borrow);
                 break;
         }
     }

@@ -20,6 +20,7 @@
             tools:text="test" />
 
         <ImageView
+            android:id="@+id/iv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

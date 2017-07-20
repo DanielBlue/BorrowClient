@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -23,7 +24,6 @@ import com.zoesap.borrowclient.adapter.AdapterContract;
 import com.zoesap.borrowclient.adapter.LoanListAdapter;
 import com.zoesap.borrowclient.adapter.PopupListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
-import com.zoesap.borrowclient.chooseloan.ChooseLoanContract;
 import com.zoesap.borrowclient.chooseloan.ChooseLoanFragment;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
@@ -57,7 +57,11 @@ public class LoanFragment extends Fragment implements LoanContract.View {
     Unbinder unbinder;
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout srlRefresh;
-    private ChooseLoanContract.Presenter mPresenter;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.iv_user)
+    ImageView ivUser;
+    private LoanContract.Presenter mPresenter;
     private PopupWindow mPopupWindow1;
     private PopupWindow mPopupWindow2;
     private ProgressDialog mProgressDialog;
@@ -88,6 +92,7 @@ public class LoanFragment extends Fragment implements LoanContract.View {
         btTypeOne.setText("不限抵押类型");
         btTypeTwo.setText("职业");
         btTypeThree.setText("筛选");
+        tvTitle.setText(R.string.all_loan);
         return view;
     }
 
@@ -108,14 +113,14 @@ public class LoanFragment extends Fragment implements LoanContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        if (isFirstLoad){
+        if (isFirstLoad) {
             mPresenter.start();
             isFirstLoad = false;
         }
     }
 
     @Override
-    public void setPresent(@NonNull ChooseLoanContract.Presenter presenter) {
+    public void setPresent(@NonNull LoanContract.Presenter presenter) {
         mPresenter = NullUtils.checkNotNull(presenter);
     }
 
@@ -159,7 +164,7 @@ public class LoanFragment extends Fragment implements LoanContract.View {
         @Override
         public void onLoadMoreRequested() {
             mPresenter.loadMoreBeanList(currentLoantype, currentCareer, currentCredit, currentHouse,
-                    new ChooseLoanContract.ListLoadMoreListener() {
+                    new LoanContract.ListLoadMoreListener() {
                         @Override
                         public void loadMoreComplete(LoanListItemBean.DataBean bean) {
                             data.addAll(bean.getList());
@@ -220,7 +225,7 @@ public class LoanFragment extends Fragment implements LoanContract.View {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(LoanDetailActivity.getStartIntent(getActivity(),data.get(position).getId()));
+                startActivity(LoanDetailActivity.getStartIntent(getActivity(), data.get(position).getId()));
             }
         });
         mAdapter.setOnLoadMoreListener(mLoadMoreListener, rvList);
