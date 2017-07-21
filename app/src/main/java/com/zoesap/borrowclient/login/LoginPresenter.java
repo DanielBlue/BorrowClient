@@ -39,6 +39,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     BorrowApplication.getInstance().setmSignIn(true);
                     mRepository.saveAccountAndPassword2Sp(account, password);
                     mRepository.saveUid2Sp(loginBean.getData().getInfo().getUid());
+                    mLoginView.finish();
                 } else {
                     mLoginView.showToast(loginBean.getInfo());
                 }

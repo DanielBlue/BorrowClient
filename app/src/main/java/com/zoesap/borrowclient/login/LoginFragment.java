@@ -155,4 +155,9 @@ public class LoginFragment extends Fragment implements View {
     public void showToast(String info) {
         Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void finish() {
+        getActivity().finish();
+    }
 }

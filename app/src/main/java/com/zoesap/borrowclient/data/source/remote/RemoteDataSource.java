@@ -27,20 +27,29 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RemoteDataSource implements DataSource {
     private static RemoteDataSource INSTANCE;
     private Retrofit retrofit;
+    private Context context;
 
     private RemoteDataSource(Context context) {
+        this.context = context;
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.BaseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(setClient(context))
+                    .client(setCookiesClient(context))
                     .build();
         }
     }
 
     private OkHttpClient setClient(Context context) {
         OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new AddCookiesInterceptor(context))
                 .addInterceptor(new SaveCookiesInterceptor(context))
+                .build();
+        return client;
+    }
+
+    private OkHttpClient setCookiesClient(Context context) {
+        OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new AddCookiesInterceptor(context))
                 .build();
         return client;
@@ -126,6 +135,12 @@ public class RemoteDataSource implements DataSource {
 
     @Override
     public void login(String account, String password, final LoadCallback<LoginBean> callback) {
+        retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BaseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(setClient(context))
+                .build();
+
         API.LoginService service = retrofit.create(API.LoginService.class);
         Call<LoginBean> call = service.login(account, password);
         call.enqueue(new Callback<LoginBean>() {

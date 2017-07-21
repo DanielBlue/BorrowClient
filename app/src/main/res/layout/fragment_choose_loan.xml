@@ -18,16 +18,6 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_label"
             tools:text="test" />
-
-        <ImageView
-            android:id="@+id/iv_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:src="@drawable/mineloanss" />
     </RelativeLayout>
 
     <LinearLayout

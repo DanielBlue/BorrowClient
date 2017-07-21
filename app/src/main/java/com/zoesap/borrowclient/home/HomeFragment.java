@@ -37,9 +37,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/18.
  */
 
-public class HomeFragment extends Fragment implements HomeContract.View{
-    @BindView(R.id.rl_loan_detail)
-    RelativeLayout rlLoanDetail;
+public class HomeFragment extends Fragment implements HomeContract.View {
     @BindView(R.id.et_loan_num)
     EditText etLoanNum;
     @BindView(R.id.btn_loan_apply)
@@ -79,7 +77,7 @@ public class HomeFragment extends Fragment implements HomeContract.View{
         mAdapter.setListItemClickListener(new AdapterContract.ListItemClickListener() {
             @Override
             public void onItemClickListener(int position) {
-                startActivity(LoanDetailActivity.getStartIntent(getActivity(),data.get(position).getId()));
+                startActivity(LoanDetailActivity.getStartIntent(getActivity(), data.get(position).getId()));
             }
         });
         rvList.setAdapter(mAdapter);
@@ -89,7 +87,7 @@ public class HomeFragment extends Fragment implements HomeContract.View{
     @Override
     public void onResume() {
         super.onResume();
-        if (isFirstLoad){
+        if (isFirstLoad) {
             mPresenter.start();
             isFirstLoad = false;
         }
@@ -136,7 +134,7 @@ public class HomeFragment extends Fragment implements HomeContract.View{
         }
     }
 
-    @OnClick({R.id.rl_house_loan, R.id.rl_loan_fast,R.id.rl_house, R.id.rl_job,R.id.rl_credit})
+    @OnClick({R.id.rl_house_loan, R.id.rl_loan_fast, R.id.rl_house, R.id.rl_job, R.id.rl_credit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_house_loan:
@@ -144,7 +142,7 @@ public class HomeFragment extends Fragment implements HomeContract.View{
             case R.id.rl_job:
             case R.id.rl_credit:
             case R.id.rl_loan_fast:
-                ((HomeActivity)getActivity()).rgGroup.check(R.id.rb_borrow);
+                ((HomeActivity) getActivity()).rgGroup.check(R.id.rb_borrow);
                 break;
         }
     }

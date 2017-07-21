@@ -1,5 +1,8 @@
 package com.zoesap.borrowclient.self;
 
+import android.text.TextUtils;
+
+import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.data.source.Repository;
 import com.zoesap.borrowclient.util.NullUtils;
 
@@ -9,16 +12,26 @@ import com.zoesap.borrowclient.util.NullUtils;
 
 public class SelfPresenter implements SelfContract.Presenter {
     private final SelfContract.View mSelfView;
-    private final Repository mDataRepository;
+    private final Repository mRepository;
 
     public SelfPresenter(SelfContract.View mSelfView, Repository mDataRepository) {
         this.mSelfView = NullUtils.checkNotNull(mSelfView);
-        this.mDataRepository = NullUtils.checkNotNull(mDataRepository);
+        this.mRepository = NullUtils.checkNotNull(mDataRepository);
         mSelfView.setPresent(this);
     }
 
     @Override
     public void start() {
+        initState();
+    }
 
+    private void initState() {
+        String account = mRepository.getAccountFromSp();
+        if (!TextUtils.isEmpty(mRepository.getAccountFromSp())
+                && BorrowApplication.getInstance().ismSignIn()) {
+            mSelfView.setAccount(account);
+        } else {
+            mSelfView.setLoginInfo();
+        }
     }
 }

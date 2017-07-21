@@ -31,6 +31,7 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @BindView(R.id.rb_self)
     RadioButton rbSelf;
     @BindView(R.id.rg_group)
+    public
     RadioGroup rgGroup;
 
     private FragmentManager mFragmentManager;

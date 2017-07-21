@@ -59,8 +59,6 @@ public class LoanFragment extends Fragment implements LoanContract.View {
     SwipeRefreshLayout srlRefresh;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.iv_user)
-    ImageView ivUser;
     private LoanContract.Presenter mPresenter;
     private PopupWindow mPopupWindow1;
     private PopupWindow mPopupWindow2;

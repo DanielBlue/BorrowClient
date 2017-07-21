@@ -23,5 +23,8 @@ public interface LoginContract {
         void showPreInptAccount(String account);
 
         void showToast(String info);
+
+        void finish();
+
     }
 }

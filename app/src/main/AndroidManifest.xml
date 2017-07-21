@@ -27,7 +27,8 @@
         <activity
             android:name=".loandetail.LoanDetailActivity"
             android:windowSoftInputMode="adjustPan|adjustResize" />
-        <activity android:name=".login.LoginActivity"></activity>
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".myloan.MyLoanActivity"></activity>
     </application>
 
 </manifest>

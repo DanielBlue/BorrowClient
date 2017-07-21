@@ -11,4 +11,5 @@
     <string name="login_username_hint">请输入您的账号</string>
     <string name="login_password_hint">请输入您的密码</string>
     <string name="register">注册</string>
+    <string name="login_now">立即登录</string>
 </resources>
