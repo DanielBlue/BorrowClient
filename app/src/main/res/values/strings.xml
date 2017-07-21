@@ -12,4 +12,5 @@
     <string name="login_password_hint">请输入您的密码</string>
     <string name="register">注册</string>
     <string name="login_now">立即登录</string>
+    <string name="my_loan">我的借款</string>
 </resources>
