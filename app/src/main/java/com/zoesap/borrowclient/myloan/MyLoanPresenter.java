@@ -1,8 +1,12 @@
 package com.zoesap.borrowclient.myloan;
 
+import android.support.annotation.NonNull;
+
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.zoesap.borrowclient.data.bean.CancelMyLoanRequestBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
+import com.zoesap.borrowclient.util.NullUtils;
 
 import java.util.List;
 
@@ -11,13 +15,13 @@ import java.util.List;
  */
 
 public class MyLoanPresenter implements MyLoanContract.Presenter {
-    private final MyLoanContract.View mLoanView;
+    private final MyLoanContract.View mMyLoanView;
     private final Repository mReposity;
 
-    public MyLoanPresenter(MyLoanContract.View mLoanView, Repository mReposity) {
-        this.mLoanView = mLoanView;
-        this.mReposity = mReposity;
-        mLoanView.setPresent(this);
+    public MyLoanPresenter(@NonNull MyLoanContract.View mMyLoanView, @NonNull Repository mReposity) {
+        this.mMyLoanView = NullUtils.checkNotNull(mMyLoanView);
+        this.mReposity = NullUtils.checkNotNull(mReposity);
+        mMyLoanView.setPresent(this);
     }
 
     @Override
@@ -26,18 +30,18 @@ public class MyLoanPresenter implements MyLoanContract.Presenter {
     }
 
     public void loadMyLoanList() {
-        mLoanView.showLoadindDialog();
+        mMyLoanView.showLoadindDialog();
         mReposity.loadMyLoanList(new DataSource.LoadCallback<List<MultiItemEntity>>() {
             @Override
             public void onSuccessful(List<MultiItemEntity> dataList) {
-                mLoanView.loadList(dataList);
-                mLoanView.loadingDialogDismiss();
+                mMyLoanView.loadList(dataList);
+                mMyLoanView.loadingDialogDismiss();
             }
 
             @Override
-            public void onFailure() {
-                mLoanView.showNetError();
-                mLoanView.loadingDialogDismiss();
+            public void onFailure(Throwable t) {
+                mMyLoanView.toastInfo(t.getMessage());
+                mMyLoanView.loadingDialogDismiss();
             }
         });
     }
@@ -47,14 +51,34 @@ public class MyLoanPresenter implements MyLoanContract.Presenter {
         mReposity.loadMyLoanList(new DataSource.LoadCallback<List<MultiItemEntity>>() {
             @Override
             public void onSuccessful(List<MultiItemEntity> dataList) {
-                mLoanView.loadList(dataList);
-                mLoanView.refreshProgressDismiss();
+                mMyLoanView.loadList(dataList);
+                mMyLoanView.refreshProgressDismiss();
             }
 
             @Override
-            public void onFailure() {
-                mLoanView.showNetError();
-                mLoanView.refreshProgressDismiss();
+            public void onFailure(Throwable t) {
+                mMyLoanView.toastInfo(t.getMessage());
+                mMyLoanView.refreshProgressDismiss();
+            }
+        });
+    }
+
+    @Override
+    public void cancelMyLoanRequest(String id) {
+        mMyLoanView.showLoadindDialog();
+        mReposity.cancelMyLoanRequest(id, new DataSource.LoadCallback<CancelMyLoanRequestBean>() {
+            @Override
+            public void onSuccessful(CancelMyLoanRequestBean cancelMyLoanRequestBean) {
+                if (cancelMyLoanRequestBean.getCode() == 10000) {
+                    loadMyLoanList();
+                }
+                mMyLoanView.toastInfo(cancelMyLoanRequestBean.getInfo());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                mMyLoanView.toastInfo(t.getMessage());
+                mMyLoanView.loadingDialogDismiss();
             }
         });
     }

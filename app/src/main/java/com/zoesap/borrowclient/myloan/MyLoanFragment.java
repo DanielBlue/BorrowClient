@@ -13,11 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.MyLoanListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
+import com.zoesap.borrowclient.data.bean.MyLoanBean;
+import com.zoesap.borrowclient.loandetail.LoanDetailActivity;
 import com.zoesap.borrowclient.util.DensityUtils;
+import com.zoesap.borrowclient.util.NullUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +38,9 @@ public class MyLoanFragment extends Fragment implements MyLoanContract.View {
 
     @BindView(R.id.rv_list)
     RecyclerView rvList;
-    Unbinder unbinder;
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout srlRefresh;
+    Unbinder unbinder;
     private MyLoanListAdapter mAdapter;
     private List<MultiItemEntity> dataList = new ArrayList<>();
     private MyLoanContract.Presenter mPresenter;
@@ -46,7 +50,7 @@ public class MyLoanFragment extends Fragment implements MyLoanContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_loan, null);
+        View view = inflater.inflate(R.layout.fragment_my_loan, container, false);
         unbinder = ButterKnife.bind(this, view);
         srlRefresh.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         srlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -55,11 +59,35 @@ public class MyLoanFragment extends Fragment implements MyLoanContract.View {
                 mPresenter.refreshMyLoanList();
             }
         });
-        mAdapter = new MyLoanListAdapter(getActivity(), dataList);
+        mAdapter = new MyLoanListAdapter(dataList);
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.tv_item_cancel:
+                        cancelMyLoanRequest(((MyLoanBean.DataBean.ListBean) dataList.get(position)).getId());
+                        break;
+                    case R.id.rl_content:
+                        startActivity(LoanDetailActivity.getStartIntent(getActivity(),
+                                ((MyLoanBean.DataBean.RecommendBean) dataList.get(position)).getId()));
+                        break;
+                }
+            }
+        });
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+            }
+        });
         rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 1), 0));
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvList.setAdapter(mAdapter);
+        mAdapter.bindToRecyclerView(rvList);
         return view;
+    }
+
+    private void cancelMyLoanRequest(String id) {
+        mPresenter.cancelMyLoanRequest(id);
     }
 
     @Override
@@ -73,13 +101,13 @@ public class MyLoanFragment extends Fragment implements MyLoanContract.View {
 
     @Override
     public void setPresent(@NonNull MyLoanContract.Presenter presenter) {
-        mPresenter = presenter;
+        mPresenter = NullUtils.checkNotNull(presenter);
     }
 
 
     @Override
-    public void showNetError() {
-        Toast.makeText(getActivity(), R.string.net_error, Toast.LENGTH_SHORT).show();
+    public void toastInfo(String s) {
+        Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
     }
 
     @Override

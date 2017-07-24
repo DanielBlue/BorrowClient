@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient.data.source;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.zoesap.borrowclient.data.bean.CancelMyLoanRequestBean;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
@@ -71,6 +72,12 @@ public class Repository implements DataSource {
     public void login(String account, String password, LoadCallback<LoginBean> callback) {
         mRemoteDataSource.login(account,password,callback);
     }
+
+    public void cancelMyLoanRequest(String id, LoadCallback<CancelMyLoanRequestBean> callback) {
+        String token = getUidFromSp();
+        mRemoteDataSource.cancelMyLoanRequest(id,token,callback);
+    }
+
 
     public String getAccountFromSp(){
         return mHelper.getString(LoginContract.Constants.KEY_ACCOUNT, "");

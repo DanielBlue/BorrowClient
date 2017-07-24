@@ -1,5 +1,6 @@
 package com.zoesap.borrowclient.data;
 
+import com.zoesap.borrowclient.data.bean.CancelMyLoanRequestBean;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
@@ -54,5 +55,10 @@ public interface API {
         @FormUrlEncoded
         @POST("centre/info")
         Call<MyLoanBean> loadMyLoanList(@Field("uid") String token);
+
+        @FormUrlEncoded
+        @POST("centre/cancelloan")
+        Call<CancelMyLoanRequestBean> cancelRequest(@Field("id") String id,@Field("uid") String token);
+
     }
 }

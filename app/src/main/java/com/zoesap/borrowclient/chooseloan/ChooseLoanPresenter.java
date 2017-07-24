@@ -38,8 +38,8 @@ public class ChooseLoanPresenter implements ChooseLoanContract.Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mChooseLoanView.showNetError();
+            public void onFailure(Throwable t) {
+                mChooseLoanView.toastInfo(t.getMessage());
             }
         });
     }
@@ -63,8 +63,8 @@ public class ChooseLoanPresenter implements ChooseLoanContract.Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mChooseLoanView.showNetError();
+            public void onFailure(Throwable t) {
+                mChooseLoanView.toastInfo(t.getMessage());
                 mChooseLoanView.loadingDialogDismiss();
             }
         });
@@ -94,8 +94,8 @@ public class ChooseLoanPresenter implements ChooseLoanContract.Presenter {
                     }
 
                     @Override
-                    public void onFailure() {
-                        mChooseLoanView.showNetError();
+                    public void onFailure(Throwable t) {
+                        mChooseLoanView.toastInfo(t.getMessage());
                         mChooseLoanView.setRefreshing(false);
                     }
                 });
@@ -120,8 +120,8 @@ public class ChooseLoanPresenter implements ChooseLoanContract.Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mChooseLoanView.showNetError();
+            public void onFailure(Throwable t) {
+                mChooseLoanView.toastInfo(t.getMessage());
                 listener.loadMoreFail();
                 mChooseLoanView.setLoadMoreStatus(false);
             }

@@ -123,6 +123,11 @@ public class LoanFragment extends Fragment implements LoanContract.View {
     }
 
     @Override
+    public void toastInfo(String info) {
+        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -133,11 +138,6 @@ public class LoanFragment extends Fragment implements LoanContract.View {
         initPopupWindowone(bean.getLoantype());
         initPopupWindowtwo(bean.getCareer());
         initPopupWindowthree();
-    }
-
-    @Override
-    public void showNetError() {
-        Toast.makeText(getActivity(), R.string.net_error, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 public interface BaseView<T> {
     void setPresent(@NonNull T presenter);
 
-    void showNetError();
+    void toastInfo(String info);
 
     void showLoadindDialog();
 

@@ -99,6 +99,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
+    public void toastInfo(String info) {
+        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -109,11 +114,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         data.clear();
         data.addAll(list);
         mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showNetError() {
-        Toast.makeText(getActivity(), R.string.net_error, Toast.LENGTH_SHORT).show();
     }
 
     @Override

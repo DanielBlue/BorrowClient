@@ -16,7 +16,7 @@ public interface DataSource {
 
     interface LoadCallback<T> {
         void onSuccessful(T t);
-        void onFailure();
+        void onFailure(Throwable t);
     }
 
     void getRecommendedLoanItem(LoadCallback<List<LoanRecommendItemBean.DataBean.ListBean>> callback);

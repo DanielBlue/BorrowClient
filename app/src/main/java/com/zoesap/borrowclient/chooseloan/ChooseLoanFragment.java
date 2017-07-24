@@ -118,6 +118,11 @@ public class ChooseLoanFragment extends Fragment implements ChooseLoanContract.V
     }
 
     @Override
+    public void toastInfo(String info) {
+        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -128,11 +133,6 @@ public class ChooseLoanFragment extends Fragment implements ChooseLoanContract.V
         initPopupWindowone(bean.getLoantype());
         initPopupWindowtwo(bean.getCareer());
         initPopupWindowthree();
-    }
-
-    @Override
-    public void showNetError() {
-        Toast.makeText(getActivity(), R.string.net_error, Toast.LENGTH_SHORT).show();
     }
 
     @Override

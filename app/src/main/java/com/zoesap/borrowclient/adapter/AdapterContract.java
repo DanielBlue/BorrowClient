@@ -13,5 +13,6 @@ public interface AdapterContract {
         public static final int LOAN_LIST_EMPTY = 100;
         public static final int LOAN_LIST = 101;
         public static final int RECOMMEND_LOAN_LIST = 102;
+        public static final int RECOMMEND_LOAN_LIST_HEADER = 103;
     }
 }

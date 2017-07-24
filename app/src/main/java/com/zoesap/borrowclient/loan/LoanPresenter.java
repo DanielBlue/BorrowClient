@@ -38,8 +38,8 @@ public class LoanPresenter implements LoanContract.Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mLoanView.showNetError();
+            public void onFailure(Throwable t) {
+                mLoanView.toastInfo(t.getMessage());
             }
         });
     }
@@ -63,8 +63,8 @@ public class LoanPresenter implements LoanContract.Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mLoanView.showNetError();
+            public void onFailure(Throwable t) {
+                mLoanView.toastInfo(t.getMessage());
                 mLoanView.loadingDialogDismiss();
             }
         });
@@ -94,8 +94,8 @@ public class LoanPresenter implements LoanContract.Presenter {
                     }
 
                     @Override
-                    public void onFailure() {
-                        mLoanView.showNetError();
+                    public void onFailure(Throwable t) {
+                        mLoanView.toastInfo(t.getMessage());
                         mLoanView.setRefreshing(false);
                     }
                 });
@@ -120,8 +120,8 @@ public class LoanPresenter implements LoanContract.Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mLoanView.showNetError();
+            public void onFailure(Throwable t) {
+                mLoanView.toastInfo(t.getMessage());
                 listener.loadMoreFail();
                 mLoanView.setLoadMoreStatus(false);
             }

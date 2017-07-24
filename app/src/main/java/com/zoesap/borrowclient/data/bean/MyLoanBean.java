@@ -59,6 +59,15 @@ public class MyLoanBean {
         private List<ListBean> list;
         private List<RecommendBean> recommend;
         private EmptyBean emptyBean;
+        private RecommendHeaderBean recommendHeaderBean;
+
+        public RecommendHeaderBean getRecommendHeaderBean() {
+            return recommendHeaderBean;
+        }
+
+        public void setRecommendHeaderBean(RecommendHeaderBean recommendHeaderBean) {
+            this.recommendHeaderBean = recommendHeaderBean;
+        }
 
         public EmptyBean getEmptyBean() {
             return emptyBean;
@@ -223,7 +232,25 @@ public class MyLoanBean {
             }
         }
 
+        public static class RecommendHeaderBean implements MultiItemEntity{
+            @Override
+            public int getItemType() {
+                return AdapterContract.MyLoanMultiItem.RECOMMEND_LOAN_LIST_HEADER;
+            }
+        }
+
         public static class RecommendBean implements MultiItemEntity{
+            public RecommendBean(String loan_adeadline, String loan_alimit, String loan_apr, String loan_ftime, String loan_ideadline, String loan_ilimit, String loan_title) {
+                this.loan_adeadline = loan_adeadline;
+                this.loan_alimit = loan_alimit;
+                this.loan_apr = loan_apr;
+                this.loan_ftime = loan_ftime;
+                this.loan_ideadline = loan_ideadline;
+                this.loan_ilimit = loan_ilimit;
+                this.loan_apr = loan_apr;
+                this.loan_title = loan_title;
+            }
+
             /**
              * company : 建设银行
              * ico : /Update/image/20161122/20161122151425_39568.png
@@ -240,6 +267,8 @@ public class MyLoanBean {
              * organ_short : 建设银行
              * type_id : 2
              */
+
+
 
             private String company;
             private String ico;

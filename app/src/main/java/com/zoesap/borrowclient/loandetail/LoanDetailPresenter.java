@@ -37,8 +37,8 @@ public class LoanDetailPresenter implements Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mLoanDetailView.showNetError();
+            public void onFailure(Throwable t) {
+                mLoanDetailView.toastInfo(t.getMessage());
                 mLoanDetailView.loadingDialogDismiss();
             }
         });

@@ -63,8 +63,8 @@ public class SelfFragment extends Fragment implements SelfContract.View {
     }
 
     @Override
-    public void showNetError() {
-        Toast.makeText(getActivity(), R.string.net_error, Toast.LENGTH_SHORT).show();
+    public void toastInfo(String info) {
+        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
     }
 
     @Override

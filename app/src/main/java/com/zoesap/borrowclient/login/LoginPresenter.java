@@ -48,8 +48,8 @@ public class LoginPresenter implements LoginContract.Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mLoginView.showNetError();
+            public void onFailure(Throwable t) {
+                mLoginView.toastInfo(t.getMessage());
                 mLoginView.loadingDialogDismiss();
             }
         });

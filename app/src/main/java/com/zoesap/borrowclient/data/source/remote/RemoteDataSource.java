@@ -5,6 +5,7 @@ import android.content.Context;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.Constants;
 import com.zoesap.borrowclient.data.API;
+import com.zoesap.borrowclient.data.bean.CancelMyLoanRequestBean;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
@@ -76,14 +77,17 @@ public class RemoteDataSource implements DataSource {
                 if (dataBean.getList()==null||dataBean.getList().size()<=0) {
                     MyLoanBean.DataBean.EmptyBean bean = new MyLoanBean.DataBean.EmptyBean();
                     dataList.add(bean);
+                }else {
+                    dataList.addAll(dataBean.getList());
                 }
+                dataList.add(new MyLoanBean.DataBean.RecommendHeaderBean());
                 dataList.addAll(dataBean.getRecommend());
                 callback.onSuccessful(dataList);
             }
 
             @Override
             public void onFailure(Call<MyLoanBean> call, Throwable t) {
-                callback.onFailure();
+                callback.onFailure(t);
             }
         });
     }
@@ -100,7 +104,7 @@ public class RemoteDataSource implements DataSource {
 
             @Override
             public void onFailure(Call<LoanRecommendItemBean> call, Throwable t) {
-                callback.onFailure();
+                callback.onFailure(t);
             }
         });
     }
@@ -117,7 +121,7 @@ public class RemoteDataSource implements DataSource {
 
             @Override
             public void onFailure(Call<ChooseLoanTypeBean> call, Throwable t) {
-                callback.onFailure();
+                callback.onFailure(t);
             }
         });
     }
@@ -135,7 +139,7 @@ public class RemoteDataSource implements DataSource {
 
             @Override
             public void onFailure(Call<LoanListItemBean> call, Throwable t) {
-                callback.onFailure();
+                callback.onFailure(t);
             }
         });
 
@@ -153,7 +157,7 @@ public class RemoteDataSource implements DataSource {
 
             @Override
             public void onFailure(Call<LoanDetailBean> call, Throwable t) {
-                callback.onFailure();
+                callback.onFailure(t);
             }
         });
     }
@@ -176,7 +180,23 @@ public class RemoteDataSource implements DataSource {
 
             @Override
             public void onFailure(Call<LoginBean> call, Throwable t) {
-                callback.onFailure();
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    public void cancelMyLoanRequest(String id, String token, final LoadCallback<CancelMyLoanRequestBean> callback) {
+        API.MyLoanService myLoanService = retrofit.create(API.MyLoanService.class);
+        Call<CancelMyLoanRequestBean> call = myLoanService.cancelRequest(id, token);
+        call.enqueue(new Callback<CancelMyLoanRequestBean>() {
+            @Override
+            public void onResponse(Call<CancelMyLoanRequestBean> call, Response<CancelMyLoanRequestBean> response) {
+                callback.onSuccessful(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<CancelMyLoanRequestBean> call, Throwable t) {
+                callback.onFailure(t);
             }
         });
     }

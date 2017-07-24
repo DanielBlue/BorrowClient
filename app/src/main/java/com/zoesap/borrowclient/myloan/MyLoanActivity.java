@@ -38,7 +38,6 @@ public class MyLoanActivity extends AppCompatActivity {
             mMyLoanFragment = MyLoanFragment.newInstance();
             mFragmentManager.beginTransaction().add(R.id.fl_content, mMyLoanFragment).commit();
         }
-
         new MyLoanPresenter(mMyLoanFragment, Injection.provideRepository(this));
     }
 

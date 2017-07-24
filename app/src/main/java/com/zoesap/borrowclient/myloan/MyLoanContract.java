@@ -13,6 +13,8 @@ import java.util.List;
 public interface MyLoanContract {
     interface Presenter extends BasePresenter {
         void refreshMyLoanList();
+
+        void cancelMyLoanRequest(String id);
     }
 
     interface View extends BaseView<Presenter> {

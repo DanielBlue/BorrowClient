@@ -40,8 +40,8 @@ public class HomePresenter implements HomeContract.Presenter {
             }
 
             @Override
-            public void onFailure() {
-                mHomeView.showNetError();
+            public void onFailure(Throwable t) {
+                mHomeView.toastInfo(t.getMessage());
                 mHomeView.loadingDialogDismiss();
             }
         });
