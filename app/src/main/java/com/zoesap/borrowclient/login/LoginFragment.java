@@ -144,7 +144,7 @@ public class LoginFragment extends Fragment implements View {
 
     @Override
     public void showPreInptAccount(String account) {
-        if (TextUtils.isEmpty(account)){
+        if (!TextUtils.isEmpty(account)){
             etUsername.setText(account);
             Editable editable = etUsername.getText();
             Selection.setSelection(editable, editable.length());

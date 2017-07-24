@@ -2,6 +2,7 @@ package com.zoesap.borrowclient.data.source.remote;
 
 import android.content.Context;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.Constants;
 import com.zoesap.borrowclient.data.API;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
@@ -9,8 +10,10 @@ import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
+import com.zoesap.borrowclient.data.bean.MyLoanBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -62,6 +65,28 @@ public class RemoteDataSource implements DataSource {
         return INSTANCE;
     }
 
+    public void loadMyLoanList(String token, final LoadCallback<List<MultiItemEntity>> callback) {
+        API.MyLoanService myLoanService = retrofit.create(API.MyLoanService.class);
+        Call<MyLoanBean> call = myLoanService.loadMyLoanList(token);
+        call.enqueue(new Callback<MyLoanBean>() {
+            @Override
+            public void onResponse(Call<MyLoanBean> call, Response<MyLoanBean> response) {
+                MyLoanBean.DataBean dataBean = response.body().getData();
+                List<MultiItemEntity> dataList = new ArrayList<MultiItemEntity>();
+                if (dataBean.getList()==null||dataBean.getList().size()<=0) {
+                    MyLoanBean.DataBean.EmptyBean bean = new MyLoanBean.DataBean.EmptyBean();
+                    dataList.add(bean);
+                }
+                dataList.addAll(dataBean.getRecommend());
+                callback.onSuccessful(dataList);
+            }
+
+            @Override
+            public void onFailure(Call<MyLoanBean> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
 
     @Override
     public void getRecommendedLoanItem(final LoadCallback<List<LoanRecommendItemBean.DataBean.ListBean>> callback) {

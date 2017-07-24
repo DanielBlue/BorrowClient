@@ -12,8 +12,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.login.LoginActivity;
+import com.zoesap.borrowclient.myloan.MyLoanActivity;
 import com.zoesap.borrowclient.util.NullUtils;
 
 import butterknife.BindView;
@@ -93,6 +95,11 @@ public class SelfFragment extends Fragment implements SelfContract.View {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_my_borrow:
+                if (BorrowApplication.getInstance().ismSignIn()) {
+                    startActivity(MyLoanActivity.getStartIntent(getActivity()));
+                } else {
+                    startActivity(LoginActivity.getStartIntent(getActivity()));
+                }
                 break;
             case R.id.rl_my_recommend:
                 break;

@@ -26,7 +26,8 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     private void loadAccount() {
-        mLoginView.showPreInptAccount(mRepository.getAccountFromSp());
+        String account = mRepository.getAccountFromSp();
+        mLoginView.showPreInptAccount(account);
     }
 
     @Override

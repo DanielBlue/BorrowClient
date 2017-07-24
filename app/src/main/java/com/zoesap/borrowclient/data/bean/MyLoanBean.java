@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient.data.bean;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.zoesap.borrowclient.adapter.AdapterContract;
 
 import java.util.List;
 
@@ -57,6 +58,15 @@ public class MyLoanBean {
     public static class DataBean {
         private List<ListBean> list;
         private List<RecommendBean> recommend;
+        private EmptyBean emptyBean;
+
+        public EmptyBean getEmptyBean() {
+            return emptyBean;
+        }
+
+        public void setEmptyBean(EmptyBean emptyBean) {
+            this.emptyBean = emptyBean;
+        }
 
         public List<ListBean> getList() {
             return list;
@@ -201,7 +211,15 @@ public class MyLoanBean {
 
             @Override
             public int getItemType() {
-                return 0;
+                return AdapterContract.MyLoanMultiItem.LOAN_LIST;
+            }
+        }
+
+        public static class EmptyBean implements MultiItemEntity{
+
+            @Override
+            public int getItemType() {
+                return AdapterContract.MyLoanMultiItem.LOAN_LIST_EMPTY;
             }
         }
 
@@ -352,7 +370,7 @@ public class MyLoanBean {
 
             @Override
             public int getItemType() {
-                return 0;
+                return AdapterContract.MyLoanMultiItem.RECOMMEND_LOAN_LIST;
             }
         }
     }

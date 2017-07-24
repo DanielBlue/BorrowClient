@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white">
 
     <LinearLayout
@@ -18,7 +18,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/iteamimagediy" />
+            android:src="@drawable/iteamimagediy" />
 
         <TextView
             android:id="@+id/tv_loan_title"
@@ -123,10 +123,5 @@
                 android:textSize="12dp"
                 tools:text="贷款期限3-6个月" />
         </RelativeLayout>
-
-        <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="3dp"-->
-        <!--android:background="@color/color_ededed" />-->
     </LinearLayout>
 </RelativeLayout>

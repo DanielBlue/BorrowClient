@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimary"
-    app:theme="@style/ToolbarTheme"
-    app:popupTheme="@style/ToolbarPopupTheme">
+    android:theme="@style/ToolbarTheme"
+    android:popupTheme="@style/ToolbarPopupTheme">
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"

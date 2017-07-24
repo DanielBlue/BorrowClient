@@ -1,5 +1,7 @@
 package com.zoesap.borrowclient.myloan;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -32,9 +34,9 @@ public class MyLoanActivity extends AppCompatActivity {
 
         mFragmentManager = getSupportFragmentManager();
         mMyLoanFragment = (MyLoanFragment) mFragmentManager.findFragmentById(R.id.fl_content);
-        if (mMyLoanFragment == null){
+        if (mMyLoanFragment == null) {
             mMyLoanFragment = MyLoanFragment.newInstance();
-            mFragmentManager.beginTransaction().add(R.id.fl_content,mMyLoanFragment).commit();
+            mFragmentManager.beginTransaction().add(R.id.fl_content, mMyLoanFragment).commit();
         }
 
         new MyLoanPresenter(mMyLoanFragment, Injection.provideRepository(this));
@@ -58,5 +60,10 @@ public class MyLoanActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static Intent getStartIntent(Activity activity) {
+        Intent intent = new Intent(activity, MyLoanActivity.class);
+        return intent;
     }
 }

@@ -13,9 +13,9 @@ import java.util.List;
  */
 
 public interface DataSource {
+
     interface LoadCallback<T> {
         void onSuccessful(T t);
-
         void onFailure();
     }
 

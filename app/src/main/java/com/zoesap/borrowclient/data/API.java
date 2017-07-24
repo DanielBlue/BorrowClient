@@ -5,6 +5,7 @@ import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
+import com.zoesap.borrowclient.data.bean.MyLoanBean;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -47,5 +48,11 @@ public interface API {
         @FormUrlEncoded
         @POST("user/dologin")
         Call<LoginBean> login(@Field("account") String account,@Field("password") String password);
+    }
+
+    interface MyLoanService{
+        @FormUrlEncoded
+        @POST("centre/info")
+        Call<MyLoanBean> loadMyLoanList(@Field("uid") String token);
     }
 }

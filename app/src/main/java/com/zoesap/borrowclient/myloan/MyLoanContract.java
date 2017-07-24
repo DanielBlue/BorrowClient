@@ -1,8 +1,10 @@
 package com.zoesap.borrowclient.myloan;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.BasePresenter;
 import com.zoesap.borrowclient.BaseView;
-import com.zoesap.borrowclient.data.bean.MyLoanBean;
+
+import java.util.List;
 
 /**
  * Created by maoqi on 2017/7/21.
@@ -10,9 +12,12 @@ import com.zoesap.borrowclient.data.bean.MyLoanBean;
 
 public interface MyLoanContract {
     interface Presenter extends BasePresenter {
+        void refreshMyLoanList();
     }
 
     interface View extends BaseView<Presenter> {
-        void updateList(MyLoanBean.DataBean bean);
+        void loadList(List<MultiItemEntity> dataList);
+
+        void refreshProgressDismiss();
     }
 }

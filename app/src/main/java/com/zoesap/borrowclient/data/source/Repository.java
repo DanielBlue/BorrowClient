@@ -1,5 +1,6 @@
 package com.zoesap.borrowclient.data.source;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
@@ -36,6 +37,10 @@ public class Repository implements DataSource {
         INSTANCE = null;
     }
 
+    public void loadMyLoanList(LoadCallback<List<MultiItemEntity>> callback) {
+        String token = getUidFromSp();
+        mRemoteDataSource.loadMyLoanList(token,callback);
+    }
 
     @Override
     public void getRecommendedLoanItem(LoadCallback<List<LoanRecommendItemBean.DataBean.ListBean>> callback) {
