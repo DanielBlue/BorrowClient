@@ -5,6 +5,7 @@ import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
+import com.zoesap.borrowclient.data.bean.MyRecommendBean;
 
 import java.util.List;
 
@@ -33,4 +34,6 @@ public interface DataSource {
     void getLoanDetailBean(String loanId, LoadCallback<LoanDetailBean.DataBean> callback);
 
     void login(String account,String password,LoadCallback<LoginBean> callback);
+
+    void getMyRecommendBean(LoadCallback<MyRecommendBean> callback);
 }

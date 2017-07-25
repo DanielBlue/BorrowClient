@@ -7,6 +7,7 @@ import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
+import com.zoesap.borrowclient.data.bean.MyRecommendBean;
 import com.zoesap.borrowclient.data.source.remote.RemoteDataSource;
 import com.zoesap.borrowclient.data.source.sp.SpHelper;
 import com.zoesap.borrowclient.login.LoginContract;
@@ -71,6 +72,11 @@ public class Repository implements DataSource {
     @Override
     public void login(String account, String password, LoadCallback<LoginBean> callback) {
         mRemoteDataSource.login(account,password,callback);
+    }
+
+    @Override
+    public void getMyRecommendBean(LoadCallback<MyRecommendBean> callback) {
+        mRemoteDataSource.getMyRecommendBean(callback);
     }
 
     public void cancelMyLoanRequest(String id, LoadCallback<CancelMyLoanRequestBean> callback) {

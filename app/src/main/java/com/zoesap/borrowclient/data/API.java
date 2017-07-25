@@ -7,6 +7,7 @@ import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.bean.MyLoanBean;
+import com.zoesap.borrowclient.data.bean.MyRecommendBean;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -59,6 +60,10 @@ public interface API {
         @FormUrlEncoded
         @POST("centre/cancelloan")
         Call<CancelMyLoanRequestBean> cancelRequest(@Field("id") String id,@Field("uid") String token);
+    }
 
+    interface MyRecommendService {
+        @POST("centre/recommend")
+        Call<MyRecommendBean> loadMyRecommendBean();
     }
 }

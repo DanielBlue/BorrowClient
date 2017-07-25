@@ -13,4 +13,8 @@
     <string name="register">注册</string>
     <string name="login_now">立即登录</string>
     <string name="my_loan">我的借款</string>
+    <string name="my_recommendation">我的推荐</string>
+    <string name="setting">设置</string>
+    <string name="about_us">关于我们</string>
+    <string name="exit">退出</string>
 </resources>

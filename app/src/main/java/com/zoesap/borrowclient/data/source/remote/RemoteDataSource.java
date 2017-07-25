@@ -12,6 +12,7 @@ import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.bean.MyLoanBean;
+import com.zoesap.borrowclient.data.bean.MyRecommendBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 
 import java.util.ArrayList;
@@ -180,6 +181,23 @@ public class RemoteDataSource implements DataSource {
 
             @Override
             public void onFailure(Call<LoginBean> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    @Override
+    public void getMyRecommendBean(final LoadCallback<MyRecommendBean> callback) {
+        API.MyRecommendService myRecommendService = retrofit.create(API.MyRecommendService.class);
+        Call<MyRecommendBean> call = myRecommendService.loadMyRecommendBean();
+        call.enqueue(new Callback<MyRecommendBean>() {
+            @Override
+            public void onResponse(Call<MyRecommendBean> call, Response<MyRecommendBean> response) {
+                callback.onSuccessful(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<MyRecommendBean> call, Throwable t) {
                 callback.onFailure(t);
             }
         });

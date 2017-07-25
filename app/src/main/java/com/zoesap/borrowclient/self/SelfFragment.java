@@ -16,6 +16,8 @@ import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.login.LoginActivity;
 import com.zoesap.borrowclient.myloan.MyLoanActivity;
+import com.zoesap.borrowclient.myrecommendation.MyRecommendationActivity;
+import com.zoesap.borrowclient.setting.SettingActivity;
 import com.zoesap.borrowclient.util.NullUtils;
 
 import butterknife.BindView;
@@ -102,10 +104,16 @@ public class SelfFragment extends Fragment implements SelfContract.View {
                 }
                 break;
             case R.id.rl_my_recommend:
+                if (BorrowApplication.getInstance().ismSignIn()) {
+                    startActivity(MyRecommendationActivity.getStartIntent(getActivity()));
+                } else {
+                    startActivity(LoginActivity.getStartIntent(getActivity()));
+                }
                 break;
             case R.id.rl_my_income:
                 break;
             case R.id.rl_setting:
+                startActivity(SettingActivity.getStartIntent(getActivity()));
                 break;
         }
     }
