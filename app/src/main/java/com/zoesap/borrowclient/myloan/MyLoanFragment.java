@@ -77,7 +77,7 @@ public class MyLoanFragment extends BaseFragment implements MyLoanContract.View 
 
             }
         });
-        rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 1), 0));
+        rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 5), 0));
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter.bindToRecyclerView(rvList);
         return view;

@@ -149,7 +149,7 @@ public class LoanDetailFragment extends BaseFragment implements LoanDetailContra
                             ((LoanDetailActivity) getActivity()).loanId,
                             etLoanNum.getText().toString()));
                 } else {
-                    if (!mAlertDialog.isShowing()) {
+                    if (mAlertDialog!=null&&!mAlertDialog.isShowing()) {
                         mAlertDialog.show();
                     }
                 }

@@ -11,7 +11,7 @@ import com.zoesap.borrowclient.BaseView;
 
 public interface ApplyQualificationContract {
     interface Presenter extends BasePresenter{
-        void submit2Server(String mCurrentIncome, String mCurrentJob, String mCurrentHouse, String loanId);
+        void submit2Server(String mCurrentIncome, String mCurrentJob, String mCurrentHouse, String applyInfoId);
     }
     interface View extends BaseView<Presenter>{
         void change2NextPage();

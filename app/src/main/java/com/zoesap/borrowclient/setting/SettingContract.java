@@ -9,6 +9,7 @@ import com.zoesap.borrowclient.BaseView;
 
 public interface SettingContract {
     interface Presenter extends BasePresenter {
+        void clearAccountAndPassword();
     }
 
     interface View extends BaseView<Presenter> {

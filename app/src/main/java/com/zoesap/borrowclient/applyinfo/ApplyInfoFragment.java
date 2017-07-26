@@ -67,6 +67,7 @@ public class ApplyInfoFragment extends BaseFragment implements ApplyInfoContract
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mPresenter.stopCountDownTimer();
         unbinder.unbind();
     }
 
@@ -90,7 +91,7 @@ public class ApplyInfoFragment extends BaseFragment implements ApplyInfoContract
 
     @Override
     public void updateCountDownButton(String millis) {
-        btApplyGetCode.setText(millis);
+        btApplyGetCode.setText(millis + "秒");
         btApplyGetCode.setOnClickListener(null);
     }
 

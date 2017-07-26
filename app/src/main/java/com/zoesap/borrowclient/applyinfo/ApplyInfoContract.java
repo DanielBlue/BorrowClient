@@ -14,6 +14,9 @@ public interface ApplyInfoContract {
         void getSmsCode(String phonenum);
 
         void applySubmit(String name, String phonenum, String smscode, String money, String use, String loanId);
+
+        void stopCountDownTimer();
+
     }
 
     interface View extends BaseView<Presenter> {

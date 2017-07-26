@@ -3,7 +3,7 @@
     <string name="home_tab_home">首页</string>
     <string name="home_tab_loan">借款</string>
     <string name="home_tab_self">我的</string>
-    <string name="net_error">网络错误</string>
+    <string name="net_error">与服务器连接失败</string>
     <string name="all_loan">全部贷款</string>
     <string name="loan_detail">借款详情</string>
     <string name="login">登录</string>
@@ -29,4 +29,17 @@
     <string name="back">返回</string>
     <string name="cancel">取消</string>
     <string name="to_login">未登录,是否登录?</string>
+    <string name="login_failed">登录失败</string>
+    <string name="about_us_str">湖北恒信融创投资管理有限公司是一家具有上市公司背景的金融服务公司，公司运营着专注房产理财产品的金融服务平台——好借贷。好借贷运营团队由具有金融投资、风险管理和软件开发等领域的专业人士组成。好借贷运营团队由具有金融投资、风险管理和软件开发等领域的专业人士组成。平台秉承“让借款更简单，让投资更安全”的理念，为借款方和投资者提供全方位的专业金融服务。</string>
+    <string name="about_borrow">关于好借贷</string>
+    <string name="phone_num">手&#160;&#160;机&#160;&#160;号</string>
+    <string name="input_phone_hint">请输入您的手机号</string>
+    <string name="login_password">登录密码</string>
+    <string name="input_password_hint">请输入您的密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="input_confirm_password_hint">请再次输入您的密码</string>
+    <string name="verification_code">验&#160;&#160;证&#160;&#160;码</string>
+    <string name="invite_code"><![CDATA[邀&#160;&#160;请&#160;&#160;码]]></string>
+    <string name="select">选填</string>
+    <string name="confirm">确认</string>
 </resources>

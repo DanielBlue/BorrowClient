@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient;
 
 import android.app.ProgressDialog;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
@@ -13,6 +14,11 @@ public abstract class BaseFragment extends Fragment{
 
     public void toastInfo(String info) {
         Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
+    }
+
+    public void toastInfo(@StringRes int StrId) {
+        Toast.makeText(getActivity(), StrId, Toast.LENGTH_SHORT).show();
+
     }
 
 

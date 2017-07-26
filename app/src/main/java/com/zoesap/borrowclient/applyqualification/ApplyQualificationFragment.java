@@ -1,7 +1,6 @@
 package com.zoesap.borrowclient.applyqualification;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -113,8 +112,6 @@ public class ApplyQualificationFragment extends BaseFragment implements ApplyQua
         mIncomePopupWindow = new PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         mIncomePopupWindow.setContentView(view);
-        mIncomePopupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
-        mIncomePopupWindow.setOutsideTouchable(false);
         mIncomePopupWindow.setFocusable(true);
         mIncomePopupWindow.setAnimationStyle(R.style.AnimBottomUpDown);
     }
@@ -157,8 +154,6 @@ public class ApplyQualificationFragment extends BaseFragment implements ApplyQua
         mJobPopupWindow = new PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         mJobPopupWindow.setContentView(view);
-        mJobPopupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
-        mJobPopupWindow.setOutsideTouchable(false);
         mJobPopupWindow.setFocusable(true);
         mJobPopupWindow.setAnimationStyle(R.style.AnimBottomUpDown);
     }
@@ -201,8 +196,6 @@ public class ApplyQualificationFragment extends BaseFragment implements ApplyQua
         mHousePopupWindow = new PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         mHousePopupWindow.setContentView(view);
-//        mHousePopupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
-//        mHousePopupWindow.setOutsideTouchable(false);
         mHousePopupWindow.setFocusable(true);
         mHousePopupWindow.setAnimationStyle(R.style.AnimBottomUpDown);
     }
@@ -226,7 +219,7 @@ public class ApplyQualificationFragment extends BaseFragment implements ApplyQua
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_apply:
-                mPresenter.submit2Server(mCurrentIncome, mCurrentJob, mCurrentHouse, mActivity.loanId);
+                mPresenter.submit2Server(mCurrentIncome, mCurrentJob, mCurrentHouse, mActivity.applyInfoId);
                 break;
             case R.id.tv_income:
                 if (!mIncomePopupWindow.isShowing()) {

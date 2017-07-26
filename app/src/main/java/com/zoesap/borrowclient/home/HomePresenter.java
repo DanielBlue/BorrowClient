@@ -3,6 +3,7 @@ package com.zoesap.borrowclient.home;
 
 import android.util.Log;
 
+import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
@@ -41,7 +42,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mHomeView.toastInfo(t.getMessage());
+                mHomeView.toastInfo(R.string.net_error);
                 mHomeView.loadingDialogDismiss();
             }
         });

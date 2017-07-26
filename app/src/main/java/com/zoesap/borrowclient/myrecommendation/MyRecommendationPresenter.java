@@ -2,6 +2,7 @@ package com.zoesap.borrowclient.myrecommendation;
 
 import android.support.annotation.NonNull;
 
+import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.MyRecommendBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
@@ -69,7 +70,7 @@ public class MyRecommendationPresenter implements MyRecommendationContract.Prese
 
             @Override
             public void onFailure(Throwable t) {
-                mMyRecommendationView.toastInfo(t.getMessage());
+                mMyRecommendationView.toastInfo(R.string.net_error);
                 mMyRecommendationView.loadingDialogDismiss();
             }
         });
@@ -98,7 +99,7 @@ public class MyRecommendationPresenter implements MyRecommendationContract.Prese
 
             @Override
             public void onFailure(Throwable t) {
-                mMyRecommendationView.toastInfo(t.getMessage());
+                mMyRecommendationView.toastInfo(R.string.net_error);
                 mMyRecommendationView.refreshProgressDismiss();
             }
         });

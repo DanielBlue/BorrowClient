@@ -6,10 +6,12 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -21,12 +23,14 @@ import butterknife.Unbinder;
 public class ApplyResultFragment extends BaseFragment implements ApplyResultContract.View {
 
     Unbinder unbinder;
+    @BindView(R.id.rl_apply)
+    RelativeLayout rlApply;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_apply_result, null);
-        unbinder = ButterKnife.bind(this, super.onCreateView(inflater, container, savedInstanceState));
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 

@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient.data.source;
 
 import com.zoesap.borrowclient.data.bean.ApplyInfoBean;
+import com.zoesap.borrowclient.data.bean.ApplyQualificationBean;
 import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
@@ -54,5 +55,5 @@ public interface DataSource {
                             String loan_status,
                             String loan_house,
                             String id,
-                            LoadCallback<BaseBeanWrapper> callback);
+                            LoadCallback<ApplyQualificationBean> callback);
 }

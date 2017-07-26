@@ -1,11 +1,13 @@
 package com.zoesap.borrowclient.data.source.remote;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.Constants;
 import com.zoesap.borrowclient.data.API;
 import com.zoesap.borrowclient.data.bean.ApplyInfoBean;
+import com.zoesap.borrowclient.data.bean.ApplyQualificationBean;
 import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
@@ -242,17 +244,22 @@ public class RemoteDataSource implements DataSource {
     }
 
     @Override
-    public void getApplyLoanResult(String loan_income, String loan_status, String loan_house, String id, final LoadCallback<BaseBeanWrapper> callback) {
+    public void getApplyLoanResult(String loan_income, String loan_status, String loan_house, String id, final LoadCallback<ApplyQualificationBean> callback) {
+        Log.e("RemoteDataSource", "getApplyLoanResult(RemoteDataSource.java:246)"
+                + "loan_income :" + loan_income
+                + "loan_status :" + loan_status
+                + "loan_house :" + loan_house
+                + "id :" + id);
         API.ApplyQualificationService applyQualificationService = retrofit.create(API.ApplyQualificationService.class);
-        Call<BaseBeanWrapper> call = applyQualificationService.getApplyResult(loan_income, loan_status, loan_house, id);
-        call.enqueue(new Callback<BaseBeanWrapper>() {
+        Call<ApplyQualificationBean> call = applyQualificationService.getApplyResult(loan_income, loan_status, loan_house, id);
+        call.enqueue(new Callback<ApplyQualificationBean>() {
             @Override
-            public void onResponse(Call<BaseBeanWrapper> call, Response<BaseBeanWrapper> response) {
+            public void onResponse(Call<ApplyQualificationBean> call, Response<ApplyQualificationBean> response) {
                 callback.onSuccessful(response.body());
             }
 
             @Override
-            public void onFailure(Call<BaseBeanWrapper> call, Throwable t) {
+            public void onFailure(Call<ApplyQualificationBean> call, Throwable t) {
                 callback.onFailure(t);
             }
         });

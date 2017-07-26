@@ -18,6 +18,7 @@ import com.zoesap.borrowclient.util.NullUtils;
 public class ApplyInfoPresenter implements ApplyInfoContract.Presenter {
     private final ApplyInfoContract.View mApplyInfoView;
     private final Repository mRepository;
+    private CountDownTimer mTimer;
 
     public ApplyInfoPresenter(@NonNull ApplyInfoFragment mApplyInfoView, @NonNull Repository mRepository) {
         this.mApplyInfoView = NullUtils.checkNotNull(mApplyInfoView);
@@ -71,10 +72,10 @@ public class ApplyInfoPresenter implements ApplyInfoContract.Presenter {
                     new DataSource.LoadCallback<ApplyInfoBean>() {
                         @Override
                         public void onSuccessful(ApplyInfoBean applyInfoBeanBaseBeanWrapper) {
-                            if (applyInfoBeanBaseBeanWrapper.getCode()==10000){
+                            if (applyInfoBeanBaseBeanWrapper.getCode() == 10000) {
                                 mApplyInfoView.setApplyInfoId(applyInfoBeanBaseBeanWrapper.getData().getId());
                                 mApplyInfoView.change2NextPage();
-                            }else {
+                            } else {
                                 mApplyInfoView.toastInfo(applyInfoBeanBaseBeanWrapper.getInfo());
                             }
                             mApplyInfoView.loadingDialogDismiss();
@@ -82,18 +83,25 @@ public class ApplyInfoPresenter implements ApplyInfoContract.Presenter {
 
                         @Override
                         public void onFailure(Throwable t) {
-                            mApplyInfoView.toastInfo(t.getMessage());
+                            mApplyInfoView.toastInfo(R.string.net_error);
                             mApplyInfoView.loadingDialogDismiss();
                         }
                     });
         }
     }
 
+    @Override
+    public void stopCountDownTimer() {
+        if (mTimer!=null) {
+            mTimer.cancel();
+        }
+    }
+
     private void countDown() {
-        CountDownTimer timer = new CountDownTimer(60000, 1000) {
+        mTimer = new CountDownTimer(120000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                mApplyInfoView.updateCountDownButton(String.valueOf(millisUntilFinished/1000));
+                mApplyInfoView.updateCountDownButton(String.valueOf(millisUntilFinished / 1000));
             }
 
             @Override
@@ -101,6 +109,8 @@ public class ApplyInfoPresenter implements ApplyInfoContract.Presenter {
                 mApplyInfoView.countDownFinish();
             }
         };
-        timer.start();
+        mTimer.start();
     }
+
+
 }

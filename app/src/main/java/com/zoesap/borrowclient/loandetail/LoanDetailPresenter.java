@@ -1,5 +1,6 @@
 package com.zoesap.borrowclient.loandetail;
 
+import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
@@ -38,7 +39,7 @@ public class LoanDetailPresenter implements Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mLoanDetailView.toastInfo(t.getMessage());
+                mLoanDetailView.toastInfo(R.string.net_error);
                 mLoanDetailView.loadingDialogDismiss();
             }
         });

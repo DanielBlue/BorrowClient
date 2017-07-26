@@ -3,7 +3,7 @@ package com.zoesap.borrowclient.applyqualification;
 import android.support.annotation.NonNull;
 
 import com.zoesap.borrowclient.R;
-import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
+import com.zoesap.borrowclient.data.bean.ApplyQualificationBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
 import com.zoesap.borrowclient.util.NullUtils;
@@ -28,12 +28,12 @@ public class ApplyQualificationPresenter implements ApplyQualificationContract.P
     }
 
     @Override
-    public void submit2Server(String mCurrentIncome, String mCurrentJob, String mCurrentHouse, String loanId) {
+    public void submit2Server(String mCurrentIncome, String mCurrentJob, String mCurrentHouse, String applyInfoId) {
         mApplyResultView.showLoadindDialog();
-        mRepository.getApplyLoanResult(mCurrentIncome, mCurrentJob, mCurrentHouse, loanId,
-                new DataSource.LoadCallback<BaseBeanWrapper>() {
+        mRepository.getApplyLoanResult(mCurrentIncome, mCurrentJob, mCurrentHouse, applyInfoId,
+                new DataSource.LoadCallback<ApplyQualificationBean>() {
                     @Override
-                    public void onSuccessful(BaseBeanWrapper baseBeanWrapper) {
+                    public void onSuccessful(ApplyQualificationBean baseBeanWrapper) {
                         if (baseBeanWrapper.getCode()==10000) {
                             mApplyResultView.toastInfo(mApplyResultView.getContext().getString(R.string.apply_successful));
                             mApplyResultView.change2NextPage();
@@ -45,7 +45,7 @@ public class ApplyQualificationPresenter implements ApplyQualificationContract.P
 
                     @Override
                     public void onFailure(Throwable t) {
-                        mApplyResultView.toastInfo(t.getMessage());
+                        mApplyResultView.toastInfo(R.string.net_error);
                         mApplyResultView.loadingDialogDismiss();
                     }
                 });

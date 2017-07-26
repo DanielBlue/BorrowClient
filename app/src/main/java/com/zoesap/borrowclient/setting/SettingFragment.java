@@ -1,15 +1,20 @@
 package com.zoesap.borrowclient.setting;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.zoesap.borrowclient.BaseFragment;
+import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
+import com.zoesap.borrowclient.aboutus.AboutUsActivity;
+import com.zoesap.borrowclient.login.LoginActivity;
 import com.zoesap.borrowclient.util.NullUtils;
 
 import butterknife.BindView;
@@ -28,13 +33,51 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
     RelativeLayout rlExit;
     Unbinder unbinder;
     private SettingContract.Presenter mPresenter;
+    private String[] items = {"退出当前账号", "关闭好借贷"};
+    private String[] closeItems = {"关闭好借贷"};
+    private AlertDialog mAlertDialog;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, null);
-        unbinder = ButterKnife.bind(this, super.onCreateView(inflater, container, savedInstanceState));
-        return super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
+    }
+
+    private void initDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        if (BorrowApplication.getInstance().ismSignIn()) {
+            builder.setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case 0:
+                            mAlertDialog.dismiss();
+                            BorrowApplication.getInstance().loginout();
+                            mPresenter.clearAccountAndPassword();
+                            startActivity(LoginActivity.getStartIntent(getActivity()));
+                            getActivity().finish();
+                            break;
+                        case 1:
+                            mAlertDialog.dismiss();
+                            BorrowApplication.removeAllActivity();
+                            System.exit(0);
+                            break;
+                    }
+                }
+            });
+        } else {
+            builder.setItems(closeItems, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    mAlertDialog.dismiss();
+                    BorrowApplication.removeAllActivity();
+                    System.exit(0);
+                }
+            });
+        }
+        mAlertDialog = builder.create();
     }
 
     @Override
@@ -56,10 +99,13 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_about_company:
-
+                startActivity(AboutUsActivity.getStartIntent(getActivity()));
                 break;
             case R.id.rl_exit:
-
+                initDialog();
+                if (mAlertDialog != null && !mAlertDialog.isShowing()) {
+                    mAlertDialog.show();
+                }
                 break;
         }
     }

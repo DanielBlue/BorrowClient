@@ -3,6 +3,7 @@ package com.zoesap.borrowclient.myloan;
 import android.support.annotation.NonNull;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
@@ -40,7 +41,7 @@ public class MyLoanPresenter implements MyLoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mMyLoanView.toastInfo(t.getMessage());
+                mMyLoanView.toastInfo(R.string.net_error);
                 mMyLoanView.loadingDialogDismiss();
             }
         });
@@ -57,7 +58,7 @@ public class MyLoanPresenter implements MyLoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mMyLoanView.toastInfo(t.getMessage());
+                mMyLoanView.toastInfo(R.string.net_error);
                 mMyLoanView.refreshProgressDismiss();
             }
         });
@@ -77,7 +78,7 @@ public class MyLoanPresenter implements MyLoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mMyLoanView.toastInfo(t.getMessage());
+                mMyLoanView.toastInfo(R.string.net_error);
                 mMyLoanView.loadingDialogDismiss();
             }
         });

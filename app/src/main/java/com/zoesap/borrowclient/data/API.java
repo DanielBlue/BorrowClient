@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient.data;
 
 import com.zoesap.borrowclient.data.bean.ApplyInfoBean;
+import com.zoesap.borrowclient.data.bean.ApplyQualificationBean;
 import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
@@ -86,9 +87,9 @@ public interface API {
     interface ApplyQualificationService {
         @FormUrlEncoded
         @POST("search/apply")
-        Call<BaseBeanWrapper> getApplyResult(@Field("loan_income") String loan_income,
-                                             @Field("loan_status") String loan_status,
-                                             @Field("loan_house") String loan_house,
-                                             @Field("id") String id);
+        Call<ApplyQualificationBean> getApplyResult(@Field("loan_income") String loan_income,
+                                                                     @Field("loan_status") String loan_status,
+                                                                     @Field("loan_house") String loan_house,
+                                                                     @Field("id") String id);
     }
 }

@@ -2,6 +2,7 @@ package com.zoesap.borrowclient.loan;
 
 import android.util.Log;
 
+import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.source.DataSource;
@@ -39,7 +40,7 @@ public class LoanPresenter implements LoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mLoanView.toastInfo(t.getMessage());
+                mLoanView.toastInfo(R.string.net_error);
             }
         });
     }
@@ -64,7 +65,7 @@ public class LoanPresenter implements LoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mLoanView.toastInfo(t.getMessage());
+                mLoanView.toastInfo(R.string.net_error);
                 mLoanView.loadingDialogDismiss();
             }
         });
@@ -95,7 +96,7 @@ public class LoanPresenter implements LoanContract.Presenter {
 
                     @Override
                     public void onFailure(Throwable t) {
-                        mLoanView.toastInfo(t.getMessage());
+                        mLoanView.toastInfo(R.string.net_error);
                         mLoanView.setRefreshing(false);
                     }
                 });
@@ -121,7 +122,7 @@ public class LoanPresenter implements LoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mLoanView.toastInfo(t.getMessage());
+                mLoanView.toastInfo(R.string.net_error);
                 listener.loadMoreFail();
                 mLoanView.setLoadMoreStatus(false);
             }

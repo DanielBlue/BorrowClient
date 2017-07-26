@@ -34,7 +34,7 @@ public class MyLoanListAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity
                 MyLoanBean.DataBean.ListBean bean = (MyLoanBean.DataBean.ListBean) item;
                 helper.setText(R.id.tv_loan_title, bean.getLoan_title())
                         .setText(R.id.tv_loan_item_time, "申请时间 : " + bean.getApply_time())
-                        .setText(R.id.tv_loan_item_limit, "申请金额 : " + bean.getApply_money())
+                        .setText(R.id.tv_loan_item_limit, "申请金额 : " + bean.getApply_money()+"万")
                         .setText(R.id.tv_loan_item_rate, "利率 : " + bean.getLoan_apr() + "%")
                         .setText(R.id.tv_item_phonenum, "联系电话 : " + bean.getTel());
 

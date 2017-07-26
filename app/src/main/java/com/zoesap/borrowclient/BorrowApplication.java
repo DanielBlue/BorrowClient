@@ -1,8 +1,11 @@
 package com.zoesap.borrowclient;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,6 +20,7 @@ public class BorrowApplication extends Application {
     public static ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
     private boolean mSignIn = false;// 登录标志
     private static BorrowApplication mBorrowApplication = null;
+    private static List<Activity> activityList = new ArrayList<>();
 
     public static BorrowApplication getInstance() {
         synchronized (BorrowApplication.class) {
@@ -25,6 +29,20 @@ public class BorrowApplication extends Application {
             }
         }
         return mBorrowApplication;
+    }
+
+    public static void addActivity(Activity activity){
+        activityList.add(activity);
+    }
+
+    public static void removeActivity(Activity activity){
+        activityList.remove(activity);
+    }
+
+    public static void removeAllActivity(){
+        for(Activity a:activityList){
+            a.finish();
+        }
     }
 
     @Override
@@ -46,5 +64,9 @@ public class BorrowApplication extends Application {
 
     public void setmSignIn(boolean mSignIn) {
         this.mSignIn = mSignIn;
+    }
+
+    public void loginout() {
+        mSignIn = false;
     }
 }

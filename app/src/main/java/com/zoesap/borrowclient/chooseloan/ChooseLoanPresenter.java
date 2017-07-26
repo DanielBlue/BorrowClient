@@ -2,6 +2,7 @@ package com.zoesap.borrowclient.chooseloan;
 
 import android.util.Log;
 
+import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.source.DataSource;
@@ -39,7 +40,7 @@ public class ChooseLoanPresenter implements ChooseLoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mChooseLoanView.toastInfo(t.getMessage());
+                mChooseLoanView.toastInfo(R.string.net_error);
             }
         });
     }
@@ -64,7 +65,7 @@ public class ChooseLoanPresenter implements ChooseLoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mChooseLoanView.toastInfo(t.getMessage());
+                mChooseLoanView.toastInfo(R.string.net_error);
                 mChooseLoanView.loadingDialogDismiss();
             }
         });
@@ -95,7 +96,7 @@ public class ChooseLoanPresenter implements ChooseLoanContract.Presenter {
 
                     @Override
                     public void onFailure(Throwable t) {
-                        mChooseLoanView.toastInfo(t.getMessage());
+                        mChooseLoanView.toastInfo(R.string.net_error);
                         mChooseLoanView.setRefreshing(false);
                     }
                 });
@@ -121,7 +122,7 @@ public class ChooseLoanPresenter implements ChooseLoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mChooseLoanView.toastInfo(t.getMessage());
+                mChooseLoanView.toastInfo(R.string.net_error);
                 listener.loadMoreFail();
                 mChooseLoanView.setLoadMoreStatus(false);
             }

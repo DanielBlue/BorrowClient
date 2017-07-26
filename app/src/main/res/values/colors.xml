@@ -44,4 +44,6 @@
     <color name="color_d7d7d7">#d7d7d7</color>
     <color name="color_e9eaec">#e9eaec</color>
     <color name="red">@android:color/holo_red_light</color>
+    <color name="hint_text_color">#C7C7CD</color>
+    <color name="round_progress_bar_def_color">#eeeff4</color>
 </resources>

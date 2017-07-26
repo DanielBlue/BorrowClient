@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient.login;
 
 import com.zoesap.borrowclient.BorrowApplication;
+import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
@@ -49,7 +50,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                mLoginView.toastInfo(t.getMessage());
+                mLoginView.toastInfo(R.string.net_error);
                 mLoginView.loadingDialogDismiss();
             }
         });

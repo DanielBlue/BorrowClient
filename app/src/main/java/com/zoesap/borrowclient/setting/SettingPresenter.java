@@ -23,4 +23,9 @@ public class SettingPresenter implements SettingContract.Presenter {
     public void start() {
 
     }
+
+    @Override
+    public void clearAccountAndPassword() {
+        mRepository.savePassword2Sp("");
+    }
 }

@@ -2,6 +2,7 @@ package com.zoesap.borrowclient.data.source;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.data.bean.ApplyInfoBean;
+import com.zoesap.borrowclient.data.bean.ApplyQualificationBean;
 import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
@@ -93,7 +94,8 @@ public class Repository implements DataSource {
     }
 
     @Override
-    public void getApplyLoanResult(String loan_income, String loan_status, String loan_house, String id,LoadCallback<BaseBeanWrapper> callback) {
+    public void getApplyLoanResult(String loan_income, String loan_status, String loan_house,
+                                   String id,LoadCallback<ApplyQualificationBean> callback) {
         mRemoteDataSource.getApplyLoanResult(loan_income, loan_status, loan_house, id,callback);
     }
 
@@ -107,6 +109,10 @@ public class Repository implements DataSource {
         return mHelper.getString(LoginContract.Constants.KEY_ACCOUNT, "");
     }
 
+    public String getPasswordFromSp(){
+        return mHelper.getString(LoginContract.Constants.KEY_PASSWORD,"");
+    }
+
     public void saveAccountAndPassword2Sp(String account, String password) {
         mHelper.putString(LoginContract.Constants.KEY_ACCOUNT,account);
         mHelper.putString(LoginContract.Constants.KEY_PASSWORD,password);
@@ -118,5 +124,9 @@ public class Repository implements DataSource {
 
     public void saveUid2Sp(String uid) {
         mHelper.putString(LoginContract.Constants.KEY_UID,uid);
+    }
+
+    public void savePassword2Sp(String password) {
+        mHelper.putString(LoginContract.Constants.KEY_PASSWORD,password);
     }
 }
