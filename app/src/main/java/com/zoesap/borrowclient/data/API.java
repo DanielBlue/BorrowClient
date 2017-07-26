@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient.data;
 
-import com.zoesap.borrowclient.data.bean.CancelMyLoanRequestBean;
+import com.zoesap.borrowclient.data.bean.ApplyInfoBean;
+import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
@@ -40,30 +41,54 @@ public interface API {
                                            @Field("page") int page);
     }
 
-    interface LoanDetailService{
+    interface LoanDetailService {
         @FormUrlEncoded
         @POST("search/loanshow")
         Call<LoanDetailBean> getLoanDetailBeanList(@Field("loan_id") String loanId);
     }
 
-    interface LoginService{
+    interface LoginService {
         @FormUrlEncoded
         @POST("user/dologin")
-        Call<LoginBean> login(@Field("account") String account,@Field("password") String password);
+        Call<LoginBean> login(@Field("account") String account, @Field("password") String password);
     }
 
-    interface MyLoanService{
+    interface MyLoanService {
         @FormUrlEncoded
         @POST("centre/info")
         Call<MyLoanBean> loadMyLoanList(@Field("uid") String token);
 
         @FormUrlEncoded
         @POST("centre/cancelloan")
-        Call<CancelMyLoanRequestBean> cancelRequest(@Field("id") String id,@Field("uid") String token);
+        Call<BaseBeanWrapper> cancelRequest(@Field("id") String id, @Field("uid") String token);
     }
 
     interface MyRecommendService {
         @POST("centre/recommend")
         Call<MyRecommendBean> loadMyRecommendBean();
+    }
+
+    interface ApplyInfoService {
+        @FormUrlEncoded
+        @POST("User/publicsms")
+        Call<BaseBeanWrapper> getSmsCode(@Field("mobile") String mobile);
+
+        @FormUrlEncoded
+        @POST("search/applyOne")
+        Call<ApplyInfoBean> getApplyInfoBean(@Field("loan_name") String loan_name,
+                                             @Field("loan_mobile") String loan_mobile,
+                                             @Field("smscode") String smscode,
+                                             @Field("loan_money") String loan_money,
+                                             @Field("loan_use") String loan_use,
+                                             @Field("id") String id);
+    }
+
+    interface ApplyQualificationService {
+        @FormUrlEncoded
+        @POST("search/apply")
+        Call<BaseBeanWrapper> getApplyResult(@Field("loan_income") String loan_income,
+                                             @Field("loan_status") String loan_status,
+                                             @Field("loan_house") String loan_house,
+                                             @Field("id") String id);
     }
 }

@@ -1,10 +1,8 @@
 package com.zoesap.borrowclient.home;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.AdapterContract;
 import com.zoesap.borrowclient.adapter.LoanRecommendListAdapter;
@@ -37,7 +35,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/18.
  */
 
-public class HomeFragment extends Fragment implements HomeContract.View {
+public class HomeFragment extends BaseFragment implements HomeContract.View {
     @BindView(R.id.et_loan_num)
     EditText etLoanNum;
     @BindView(R.id.btn_loan_apply)
@@ -62,7 +60,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     private HomeContract.Presenter mPresenter;
     private LoanRecommendListAdapter mAdapter;
-    private ProgressDialog mProgressDialog;
     private List<LoanRecommendItemBean.DataBean.ListBean> data = new ArrayList<>();
     private boolean isFirstLoad = true;
 
@@ -99,11 +96,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
-    public void toastInfo(String info) {
-        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -114,24 +106,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         data.clear();
         data.addAll(list);
         mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showLoadindDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setCanceledOnTouchOutside(false);
-        }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.show();
-        }
-    }
-
-    @Override
-    public void loadingDialogDismiss() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
     }
 
     @OnClick({R.id.rl_house_loan, R.id.rl_loan_fast, R.id.rl_house, R.id.rl_job, R.id.rl_credit})

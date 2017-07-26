@@ -1,11 +1,9 @@
 package com.zoesap.borrowclient.loan;
 
-import android.app.ProgressDialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.AdapterContract;
 import com.zoesap.borrowclient.adapter.LoanListAdapter;
@@ -43,7 +41,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/18.
  */
 
-public class LoanFragment extends Fragment implements LoanContract.View {
+public class LoanFragment extends BaseFragment implements LoanContract.View {
     @BindView(R.id.bt_type_one)
     Button btTypeOne;
     @BindView(R.id.bt_type_two)
@@ -62,7 +60,6 @@ public class LoanFragment extends Fragment implements LoanContract.View {
     private LoanContract.Presenter mPresenter;
     private PopupWindow mPopupWindow1;
     private PopupWindow mPopupWindow2;
-    private ProgressDialog mProgressDialog;
     private LoanListAdapter mAdapter;
     private PopupWindow mPopupWindow3;
     private boolean isLoadMore = false;
@@ -123,11 +120,6 @@ public class LoanFragment extends Fragment implements LoanContract.View {
     }
 
     @Override
-    public void toastInfo(String info) {
-        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -138,24 +130,6 @@ public class LoanFragment extends Fragment implements LoanContract.View {
         initPopupWindowone(bean.getLoantype());
         initPopupWindowtwo(bean.getCareer());
         initPopupWindowthree();
-    }
-
-    @Override
-    public void showLoadindDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setCanceledOnTouchOutside(false);
-        }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.show();
-        }
-    }
-
-    @Override
-    public void loadingDialogDismiss() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
     }
 
     private BaseQuickAdapter.RequestLoadMoreListener mLoadMoreListener = new BaseQuickAdapter.RequestLoadMoreListener() {

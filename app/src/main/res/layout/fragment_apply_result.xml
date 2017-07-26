@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/view_line"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/rl_minewillroomloan"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_klzq"
+                android:layout_marginTop="3dp"
+                android:gravity="center_horizontal"
+                android:text="申请人信息"
+                android:textColor="@color/white"
+                android:textSize="11dp" />
+
+            <ImageView
+                android:id="@+id/iv_klzq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/fouyi" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="2px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_klzq"
+                android:background="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_applionezhonglie"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_klzqsss"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:gravity="center_horizontal"
+                android:text="申请人资质"
+                android:textColor="@color/white"
+                android:textSize="11dp" />
+
+            <ImageView
+                android:id="@+id/iv_klzqsss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/fouer" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="2px"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/iv_klzqsss"
+                android:background="@color/white" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="2px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_klzqsss"
+                android:background="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_minewillcredit"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imv_minework"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="3dp"
+                android:gravity="center_horizontal"
+                android:text="申请结果"
+                android:textColor="@color/white"
+                android:textSize="11dp" />
+
+            <ImageView
+                android:id="@+id/imv_minework"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/sisan" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="2px"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imv_minework"
+                android:background="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_apply"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_fd6333" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="确定"
+            android:textColor="@android:color/white"
+            android:textSize="17dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="99dp"
+        android:layout_height="45dp"
+        android:layout_above="@+id/rl_apply"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayout1"
+        android:background="@color/white" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@drawable/smils" />
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="恭喜您申请成功"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18dp"
+                />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="已经收到您的贷款申请,稍后将电话联系您。"
+                android:layout_gravity="center_horizontal"
+                android:textSize="12dp"
+                />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="您可进入我的贷款查看贷款进度，也可拨打400电话查询，"
+                android:layout_gravity="center_horizontal"
+                android:textSize="12dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

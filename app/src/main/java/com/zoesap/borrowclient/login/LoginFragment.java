@@ -1,10 +1,8 @@
 package com.zoesap.borrowclient.login;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
@@ -18,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.login.LoginContract.View;
@@ -32,7 +31,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/20.
  */
 
-public class LoginFragment extends Fragment implements View {
+public class LoginFragment extends BaseFragment implements View {
     @BindView(R.id.et_username)
     EditText etUsername;
     @BindView(R.id.et_password)
@@ -46,7 +45,6 @@ public class LoginFragment extends Fragment implements View {
     Unbinder unbinder;
     private LoginContract.Presenter mPresenter;
     private boolean isFirstLoad = true;
-    private ProgressDialog mProgressDialog;
 
     @Nullable
     @Override
@@ -83,30 +81,6 @@ public class LoginFragment extends Fragment implements View {
     public void setPresent(@NonNull LoginContract.Presenter presenter) {
         mPresenter = NullUtils.checkNotNull(presenter);
     }
-
-    @Override
-    public void toastInfo(String info) {
-        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showLoadindDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setCanceledOnTouchOutside(false);
-        }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.show();
-        }
-    }
-
-    @Override
-    public void loadingDialogDismiss() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
-
 
     public static LoginFragment newInstance() {
         return new LoginFragment();

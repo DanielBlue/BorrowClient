@@ -1,20 +1,18 @@
 package com.zoesap.borrowclient.myloan;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.MyLoanListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
@@ -34,7 +32,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/21.
  */
 
-public class MyLoanFragment extends Fragment implements MyLoanContract.View {
+public class MyLoanFragment extends BaseFragment implements MyLoanContract.View {
 
     @BindView(R.id.rv_list)
     RecyclerView rvList;
@@ -44,7 +42,6 @@ public class MyLoanFragment extends Fragment implements MyLoanContract.View {
     private MyLoanListAdapter mAdapter;
     private List<MultiItemEntity> dataList = new ArrayList<>();
     private MyLoanContract.Presenter mPresenter;
-    private ProgressDialog mProgressDialog;
     private boolean isFirst = true;
 
     @Nullable
@@ -102,30 +99,6 @@ public class MyLoanFragment extends Fragment implements MyLoanContract.View {
     @Override
     public void setPresent(@NonNull MyLoanContract.Presenter presenter) {
         mPresenter = NullUtils.checkNotNull(presenter);
-    }
-
-
-    @Override
-    public void toastInfo(String s) {
-        Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showLoadindDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setCanceledOnTouchOutside(false);
-        }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.show();
-        }
-    }
-
-    @Override
-    public void loadingDialogDismiss() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
     }
 
     public static MyLoanFragment newInstance() {

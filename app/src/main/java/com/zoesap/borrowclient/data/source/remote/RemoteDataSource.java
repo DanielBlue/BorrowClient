@@ -5,7 +5,8 @@ import android.content.Context;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.Constants;
 import com.zoesap.borrowclient.data.API;
-import com.zoesap.borrowclient.data.bean.CancelMyLoanRequestBean;
+import com.zoesap.borrowclient.data.bean.ApplyInfoBean;
+import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
@@ -75,10 +76,10 @@ public class RemoteDataSource implements DataSource {
             public void onResponse(Call<MyLoanBean> call, Response<MyLoanBean> response) {
                 MyLoanBean.DataBean dataBean = response.body().getData();
                 List<MultiItemEntity> dataList = new ArrayList<MultiItemEntity>();
-                if (dataBean.getList()==null||dataBean.getList().size()<=0) {
+                if (dataBean.getList() == null || dataBean.getList().size() <= 0) {
                     MyLoanBean.DataBean.EmptyBean bean = new MyLoanBean.DataBean.EmptyBean();
                     dataList.add(bean);
-                }else {
+                } else {
                     dataList.addAll(dataBean.getList());
                 }
                 dataList.add(new MyLoanBean.DataBean.RecommendHeaderBean());
@@ -203,17 +204,71 @@ public class RemoteDataSource implements DataSource {
         });
     }
 
-    public void cancelMyLoanRequest(String id, String token, final LoadCallback<CancelMyLoanRequestBean> callback) {
-        API.MyLoanService myLoanService = retrofit.create(API.MyLoanService.class);
-        Call<CancelMyLoanRequestBean> call = myLoanService.cancelRequest(id, token);
-        call.enqueue(new Callback<CancelMyLoanRequestBean>() {
+    @Override
+    public void getApplySmsCode(String phoneNum, final LoadCallback<BaseBeanWrapper> callback) {
+        API.ApplyInfoService applyInfoService = retrofit.create(API.ApplyInfoService.class);
+        Call<BaseBeanWrapper> call = applyInfoService.getSmsCode(phoneNum);
+        call.enqueue(new Callback<BaseBeanWrapper>() {
             @Override
-            public void onResponse(Call<CancelMyLoanRequestBean> call, Response<CancelMyLoanRequestBean> response) {
+            public void onResponse(Call<BaseBeanWrapper> call, Response<BaseBeanWrapper> response) {
                 callback.onSuccessful(response.body());
             }
 
             @Override
-            public void onFailure(Call<CancelMyLoanRequestBean> call, Throwable t) {
+            public void onFailure(Call<BaseBeanWrapper> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    @Override
+    public void getApplyInfo(String loan_name, String loan_mobile, String smscode,
+                             String loan_money, String loan_use, String id,
+                             final LoadCallback<ApplyInfoBean> callback) {
+        API.ApplyInfoService applyInfoService = retrofit.create(API.ApplyInfoService.class);
+        Call<ApplyInfoBean> call = applyInfoService
+                .getApplyInfoBean(loan_name, loan_mobile, smscode, loan_money, loan_use, id);
+        call.enqueue(new Callback<ApplyInfoBean>() {
+            @Override
+            public void onResponse(Call<ApplyInfoBean> call, Response<ApplyInfoBean> response) {
+                callback.onSuccessful(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ApplyInfoBean> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    @Override
+    public void getApplyLoanResult(String loan_income, String loan_status, String loan_house, String id, final LoadCallback<BaseBeanWrapper> callback) {
+        API.ApplyQualificationService applyQualificationService = retrofit.create(API.ApplyQualificationService.class);
+        Call<BaseBeanWrapper> call = applyQualificationService.getApplyResult(loan_income, loan_status, loan_house, id);
+        call.enqueue(new Callback<BaseBeanWrapper>() {
+            @Override
+            public void onResponse(Call<BaseBeanWrapper> call, Response<BaseBeanWrapper> response) {
+                callback.onSuccessful(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<BaseBeanWrapper> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    public void cancelMyLoanRequest(String id, String token, final LoadCallback<BaseBeanWrapper> callback) {
+        API.MyLoanService myLoanService = retrofit.create(API.MyLoanService.class);
+        Call<BaseBeanWrapper> call = myLoanService.cancelRequest(id, token);
+        call.enqueue(new Callback<BaseBeanWrapper>() {
+            @Override
+            public void onResponse(Call<BaseBeanWrapper> call, Response<BaseBeanWrapper> response) {
+                callback.onSuccessful(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<BaseBeanWrapper> call, Throwable t) {
                 callback.onFailure(t);
             }
         });

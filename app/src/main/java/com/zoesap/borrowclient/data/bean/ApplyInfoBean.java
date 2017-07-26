@@ -1,25 +1,22 @@
 package com.zoesap.borrowclient.data.bean;
 
-import java.util.List;
-
 /**
- * Created by maoqi on 2017/7/24.
+ * Created by maoqi on 2017/7/25.
  */
 
-public class CancelMyLoanRequestBean {
-
+public class ApplyInfoBean {
 
     /**
      * code : 10000
-     * data : []
-     * info : 取消成功
+     * data : {"id":274}
+     * info : success
      * location :
      */
 
     private int code;
+    private DataBean data;
     private String info;
     private String location;
-    private List<?> data;
 
     public int getCode() {
         return code;
@@ -27,6 +24,14 @@ public class CancelMyLoanRequestBean {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
     }
 
     public String getInfo() {
@@ -45,11 +50,19 @@ public class CancelMyLoanRequestBean {
         this.location = location;
     }
 
-    public List<?> getData() {
-        return data;
-    }
+    public static class DataBean {
+        /**
+         * id : 274
+         */
 
-    public void setData(List<?> data) {
-        this.data = data;
+        private int id;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
     }
 }

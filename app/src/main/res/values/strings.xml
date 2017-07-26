@@ -17,4 +17,16 @@
     <string name="setting">设置</string>
     <string name="about_us">关于我们</string>
     <string name="exit">退出</string>
+    <string name="apply_info">申请人信息</string>
+    <string name="apply_qualification">申请人资质</string>
+    <string name="apply_result">申请结果</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="phone_num_error">非法的手机号</string>
+    <string name="input_empty">输入不能为空</string>
+    <string name="apply_successful">申请成功</string>
+    <string name="apply_failed">申请失败</string>
+    <string name="apply_cancel_alert">申请中返回，数据将丢失！</string>
+    <string name="back">返回</string>
+    <string name="cancel">取消</string>
+    <string name="to_login">未登录,是否登录?</string>
 </resources>

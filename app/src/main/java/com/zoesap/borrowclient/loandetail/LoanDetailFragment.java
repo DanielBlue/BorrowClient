@@ -1,10 +1,10 @@
 package com.zoesap.borrowclient.loandetail;
 
-import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,21 +12,25 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.zoesap.borrowclient.BaseFragment;
+import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
+import com.zoesap.borrowclient.applyloan.ApplyLoanActivity;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
+import com.zoesap.borrowclient.login.LoginActivity;
 import com.zoesap.borrowclient.util.NullUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
  * Created by maoqi on 2017/7/20.
  */
 
-public class LoanDetailFragment extends Fragment implements LoanDetailContract.View {
+public class LoanDetailFragment extends BaseFragment implements LoanDetailContract.View {
     @BindView(R.id.tv_loan_title)
     TextView tvLoanTitle;
     @BindView(R.id.tv_loan_type)
@@ -53,15 +57,37 @@ public class LoanDetailFragment extends Fragment implements LoanDetailContract.V
     RelativeLayout rlApply;
     Unbinder unbinder;
     private LoanDetailContract.Presenter mPresenter;
-    private ProgressDialog mProgressDialog;
     private boolean isFirstLoad = true;
+    private AlertDialog mAlertDialog;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_loan_detail, null);
         unbinder = ButterKnife.bind(this, view);
+        initDialog();
         return view;
+    }
+
+    private void initDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.to_login)
+                .setCancelable(false)
+                .setPositiveButton(R.string.login, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(LoginActivity.getStartIntent(getActivity()));
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+        mAlertDialog = builder.create();
     }
 
     @Override
@@ -76,29 +102,6 @@ public class LoanDetailFragment extends Fragment implements LoanDetailContract.V
     @Override
     public void setPresent(@NonNull LoanDetailContract.Presenter presenter) {
         mPresenter = NullUtils.checkNotNull(presenter);
-    }
-
-    @Override
-    public void toastInfo(String info) {
-        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showLoadindDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setCanceledOnTouchOutside(false);
-        }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.show();
-        }
-    }
-
-    @Override
-    public void loadingDialogDismiss() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
     }
 
     public static LoanDetailFragment newInstance() {
@@ -135,5 +138,22 @@ public class LoanDetailFragment extends Fragment implements LoanDetailContract.V
         tvLoanDeatilInterest.setText(dataBean.getLoan_apr() + "%");
         tvLoanDeatilDeadline.setText(dataBean.getLoan_ideadline() + "~" +
                 dataBean.getLoan_adeadline() + "个月");
+    }
+
+    @OnClick({R.id.rl_apply})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.rl_apply:
+                if (BorrowApplication.getInstance().ismSignIn()) {
+                    startActivity(ApplyLoanActivity.getStartIntent(getActivity(),
+                            ((LoanDetailActivity) getActivity()).loanId,
+                            etLoanNum.getText().toString()));
+                } else {
+                    if (!mAlertDialog.isShowing()) {
+                        mAlertDialog.show();
+                    }
+                }
+                break;
+        }
     }
 }

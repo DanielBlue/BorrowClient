@@ -4,14 +4,13 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.login.LoginActivity;
@@ -29,7 +28,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/18.
  */
 
-public class SelfFragment extends Fragment implements SelfContract.View {
+public class SelfFragment extends BaseFragment implements SelfContract.View {
     SelfContract.Presenter mPresenter;
     @BindView(R.id.tv_nickname)
     TextView tvNickname;
@@ -62,29 +61,6 @@ public class SelfFragment extends Fragment implements SelfContract.View {
     public void setPresent(@NonNull SelfContract.Presenter presenter) {
         mPresenter = NullUtils.checkNotNull(presenter);
         NullUtils.checkNotNull(mPresenter);
-    }
-
-    @Override
-    public void toastInfo(String info) {
-        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showLoadindDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setCanceledOnTouchOutside(false);
-        }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.show();
-        }
-    }
-
-    @Override
-    public void loadingDialogDismiss() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
     }
 
     @Override

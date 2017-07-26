@@ -3,7 +3,7 @@ package com.zoesap.borrowclient.myloan;
 import android.support.annotation.NonNull;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.zoesap.borrowclient.data.bean.CancelMyLoanRequestBean;
+import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
 import com.zoesap.borrowclient.util.NullUtils;
@@ -66,13 +66,13 @@ public class MyLoanPresenter implements MyLoanContract.Presenter {
     @Override
     public void cancelMyLoanRequest(String id) {
         mMyLoanView.showLoadindDialog();
-        mReposity.cancelMyLoanRequest(id, new DataSource.LoadCallback<CancelMyLoanRequestBean>() {
+        mReposity.cancelMyLoanRequest(id, new DataSource.LoadCallback<BaseBeanWrapper>() {
             @Override
-            public void onSuccessful(CancelMyLoanRequestBean cancelMyLoanRequestBean) {
-                if (cancelMyLoanRequestBean.getCode() == 10000) {
+            public void onSuccessful(BaseBeanWrapper baseBeanWrapper) {
+                if (baseBeanWrapper.getCode() == 10000) {
                     loadMyLoanList();
                 }
-                mMyLoanView.toastInfo(cancelMyLoanRequestBean.getInfo());
+                mMyLoanView.toastInfo(baseBeanWrapper.getInfo());
             }
 
             @Override

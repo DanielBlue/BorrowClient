@@ -1,10 +1,8 @@
 package com.zoesap.borrowclient.myrecommendation;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.MyRecommendListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
@@ -33,7 +31,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/25.
  */
 
-public class MyRecommendationFragment extends Fragment implements MyRecommendationContract.View {
+public class MyRecommendationFragment extends BaseFragment implements MyRecommendationContract.View {
     @BindView(R.id.tv_my_recommend_code)
     TextView tvMyRecommendCode;
     @BindView(R.id.tv_recommd_num)
@@ -46,7 +44,6 @@ public class MyRecommendationFragment extends Fragment implements MyRecommendati
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout srlRefresh;
     private MyRecommendationContract.Presenter mPresenter;
-    private ProgressDialog mProgressDialog;
     private MyRecommendListAdapter mAdapter;
     private List<MyRecommendBean.DataBean.DatasBean> dataList = new ArrayList<>();
 
@@ -85,29 +82,6 @@ public class MyRecommendationFragment extends Fragment implements MyRecommendati
     @Override
     public void setPresent(@NonNull MyRecommendationContract.Presenter presenter) {
         mPresenter = NullUtils.checkNotNull(presenter);
-    }
-
-    @Override
-    public void toastInfo(String info) {
-        Toast.makeText(getActivity(), info, Toast.LENGTH_SHORT);
-    }
-
-    @Override
-    public void showLoadindDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setCanceledOnTouchOutside(false);
-        }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.show();
-        }
-    }
-
-    @Override
-    public void loadingDialogDismiss() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
     }
 
     public static MyRecommendationFragment newInstance() {

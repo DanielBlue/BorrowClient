@@ -31,6 +31,7 @@
         <activity android:name=".myloan.MyLoanActivity"></activity>
         <activity android:name=".myrecommendation.MyRecommendationActivity"/>
         <activity android:name=".setting.SettingActivity"/>
+        <activity android:name=".applyloan.ApplyLoanActivity"/>
     </application>
 
 </manifest>

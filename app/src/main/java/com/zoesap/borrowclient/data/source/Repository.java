@@ -1,7 +1,8 @@
 package com.zoesap.borrowclient.data.source;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.zoesap.borrowclient.data.bean.CancelMyLoanRequestBean;
+import com.zoesap.borrowclient.data.bean.ApplyInfoBean;
+import com.zoesap.borrowclient.data.bean.BaseBeanWrapper;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
@@ -79,7 +80,24 @@ public class Repository implements DataSource {
         mRemoteDataSource.getMyRecommendBean(callback);
     }
 
-    public void cancelMyLoanRequest(String id, LoadCallback<CancelMyLoanRequestBean> callback) {
+    @Override
+    public void getApplySmsCode(String phoneNum, LoadCallback<BaseBeanWrapper> callback) {
+        mRemoteDataSource.getApplySmsCode(phoneNum,callback);
+    }
+
+    @Override
+    public void getApplyInfo(String loan_name, String loan_mobile, String smscode,
+                             String loan_money, String loan_use, String id,
+                             LoadCallback<ApplyInfoBean> callback) {
+        mRemoteDataSource.getApplyInfo(loan_name,loan_mobile,smscode,loan_money,loan_use,id,callback);
+    }
+
+    @Override
+    public void getApplyLoanResult(String loan_income, String loan_status, String loan_house, String id,LoadCallback<BaseBeanWrapper> callback) {
+        mRemoteDataSource.getApplyLoanResult(loan_income, loan_status, loan_house, id,callback);
+    }
+
+    public void cancelMyLoanRequest(String id, LoadCallback<BaseBeanWrapper> callback) {
         String token = getUidFromSp();
         mRemoteDataSource.cancelMyLoanRequest(id,token,callback);
     }

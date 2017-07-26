@@ -30,7 +30,7 @@ public class BorrowApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        appcontext = this.getApplicationContext();
+        appcontext = getApplicationContext();
     }
 
     public Context getAppcontext() {

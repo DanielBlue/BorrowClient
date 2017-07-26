@@ -3,12 +3,12 @@ package com.zoesap.borrowclient.setting;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.util.NullUtils;
 
@@ -21,7 +21,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/25.
  */
 
-public class SettingFragment extends Fragment implements SettingContract.View {
+public class SettingFragment extends BaseFragment implements SettingContract.View {
     @BindView(R.id.rl_about_company)
     RelativeLayout rlAboutCompany;
     @BindView(R.id.rl_exit)
@@ -40,21 +40,6 @@ public class SettingFragment extends Fragment implements SettingContract.View {
     @Override
     public void setPresent(@NonNull SettingContract.Presenter presenter) {
         mPresenter = NullUtils.checkNotNull(presenter);
-    }
-
-    @Override
-    public void toastInfo(String info) {
-
-    }
-
-    @Override
-    public void showLoadindDialog() {
-
-    }
-
-    @Override
-    public void loadingDialogDismiss() {
-
     }
 
     public static SettingFragment newInstance() {

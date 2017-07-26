@@ -28,6 +28,7 @@ public class LoanDetailActivity extends AppCompatActivity {
     FrameLayout flContent;
     private FragmentManager mFragmentManager;
     private LoanDetailFragment mLoanDetailFragment;
+    public String loanId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,8 @@ public class LoanDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loan_detail);
         ButterKnife.bind(this);
         initToolbar();
-        String loadId = getIntent().getExtras().getString("loan_id");
-        Log.e("LoanDetailActivity","onCreate(LoanDetailActivity.java:39)"+loadId);
+        loanId = getIntent().getExtras().getString("loan_id");
+        Log.e("LoanDetailActivity","onCreate(LoanDetailActivity.java:39)"+ loanId);
         mFragmentManager = getSupportFragmentManager();
         mLoanDetailFragment = (LoanDetailFragment) mFragmentManager.findFragmentById(R.id.fl_content);
         if (mLoanDetailFragment == null) {
@@ -44,7 +45,7 @@ public class LoanDetailActivity extends AppCompatActivity {
             mFragmentManager.beginTransaction().add(R.id.fl_content, mLoanDetailFragment).commit();
         }
 
-        new LoanDetailPresenter(mLoanDetailFragment, Injection.provideRepository(this),loadId);
+        new LoanDetailPresenter(mLoanDetailFragment, Injection.provideRepository(this), loanId);
     }
 
     private void initToolbar() {
