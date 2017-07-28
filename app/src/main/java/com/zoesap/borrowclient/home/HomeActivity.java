@@ -47,6 +47,7 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private int mCurrentIndex = 0;
     private FragmentTransaction mFragmentTransaction;
     private Repository mRepository;
+    private long firstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +65,10 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         mRepository.login(account, password, new DataSource.LoadCallback<LoginBean>() {
             @Override
             public void onSuccessful(LoginBean loginBean) {
-                if (loginBean.getCode()!=10000){
+                if (loginBean.getCode() != 10000) {
                     Toast.makeText(HomeActivity.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
                     startActivity(LoginActivity.getStartIntent(HomeActivity.this));
-                }else {
+                } else {
                     BorrowApplication.getInstance().setmSignIn(true);
                 }
             }
@@ -143,5 +144,15 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
         }
         mCurrentIndex = index;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (firstTime + 2000 > System.currentTimeMillis()) {
+            BorrowApplication.removeAllActivity();
+        } else {
+            Toast.makeText(this, R.string.click_twice_exit, Toast.LENGTH_SHORT).show();
+        }
+        firstTime = System.currentTimeMillis();
     }
 }

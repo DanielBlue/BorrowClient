@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient.myloan;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.zoesap.borrowclient.R;
@@ -41,6 +42,7 @@ public class MyLoanPresenter implements MyLoanContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
+                Log.e("MyLoanPresenter","onFailure(MyLoanPresenter.java:44)"+t.getMessage());
                 mMyLoanView.toastInfo(R.string.net_error);
                 mMyLoanView.loadingDialogDismiss();
             }

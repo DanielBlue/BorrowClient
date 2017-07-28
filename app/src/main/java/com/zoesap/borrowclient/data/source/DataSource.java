@@ -9,6 +9,8 @@ import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.bean.MyRecommendBean;
+import com.zoesap.borrowclient.data.bean.RegisterBean;
+import com.zoesap.borrowclient.data.bean.ResetPasswordBean;
 
 import java.util.List;
 
@@ -56,4 +58,17 @@ public interface DataSource {
                             String loan_house,
                             String id,
                             LoadCallback<ApplyQualificationBean> callback);
+
+    void getRegisterResult(String mobileNumber,
+                           String password,
+                           String verifyPassword,
+                           String getCode,
+                           String visitCode,
+                           LoadCallback<RegisterBean> callback);
+
+    void getResetPasswordResult(String mobile,
+                                String resms,
+                                String password,
+                                String checkpwd,
+                                LoadCallback<ResetPasswordBean> callback);
 }

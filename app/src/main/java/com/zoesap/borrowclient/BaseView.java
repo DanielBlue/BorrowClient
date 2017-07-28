@@ -1,5 +1,6 @@
 package com.zoesap.borrowclient;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
@@ -17,4 +18,6 @@ public interface BaseView<T> {
     void showLoadindDialog();
 
     void loadingDialogDismiss();
+
+    Context getContext();
 }

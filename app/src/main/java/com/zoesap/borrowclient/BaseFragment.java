@@ -1,6 +1,7 @@
 package com.zoesap.borrowclient;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -37,5 +38,9 @@ public abstract class BaseFragment extends Fragment{
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
+    }
+
+    public Context getContext(){
+        return getActivity();
     }
 }

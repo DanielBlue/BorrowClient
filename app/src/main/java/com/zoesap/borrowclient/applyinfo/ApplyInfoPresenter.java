@@ -33,13 +33,12 @@ public class ApplyInfoPresenter implements ApplyInfoContract.Presenter {
 
     @Override
     public void getSmsCode(String phoneNum) {
-        mApplyInfoView.showLoadindDialog();
         String telRegex = "[1][34578]\\d{9}";
         if (phoneNum.isEmpty() || "".equals(phoneNum)
                 || !phoneNum.matches(telRegex)) {
             mApplyInfoView.toastInfo(mApplyInfoView.getContext().getString(R.string.phone_num_error));
-            mApplyInfoView.loadingDialogDismiss();
         } else {
+            mApplyInfoView.showLoadindDialog();
             mRepository.getApplySmsCode(phoneNum, new DataSource.LoadCallback<BaseBeanWrapper>() {
                 @Override
                 public void onSuccessful(BaseBeanWrapper baseBeanWrapper) {
@@ -52,7 +51,7 @@ public class ApplyInfoPresenter implements ApplyInfoContract.Presenter {
 
                 @Override
                 public void onFailure(Throwable t) {
-                    mApplyInfoView.toastInfo(t.getMessage());
+                    mApplyInfoView.toastInfo(R.string.net_error);
                     mApplyInfoView.loadingDialogDismiss();
                 }
             });
@@ -61,13 +60,12 @@ public class ApplyInfoPresenter implements ApplyInfoContract.Presenter {
 
     @Override
     public void applySubmit(String name, String phonenum, String smscode, String money, String use, String loanId) {
-        mApplyInfoView.showLoadindDialog();
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(phonenum)
                 || TextUtils.isEmpty(smscode) || TextUtils.isEmpty(money)
                 || TextUtils.isEmpty(use) || TextUtils.isEmpty(loanId)) {
             mApplyInfoView.toastInfo(mApplyInfoView.getContext().getString(R.string.input_empty));
-            mApplyInfoView.loadingDialogDismiss();
         } else {
+            mApplyInfoView.showLoadindDialog();
             mRepository.getApplyInfo(name, phonenum, smscode, money, use, loanId,
                     new DataSource.LoadCallback<ApplyInfoBean>() {
                         @Override
@@ -92,7 +90,7 @@ public class ApplyInfoPresenter implements ApplyInfoContract.Presenter {
 
     @Override
     public void stopCountDownTimer() {
-        if (mTimer!=null) {
+        if (mTimer != null) {
             mTimer.cancel();
         }
     }

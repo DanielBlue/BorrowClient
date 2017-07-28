@@ -16,6 +16,8 @@ import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.bean.MyLoanBean;
 import com.zoesap.borrowclient.data.bean.MyRecommendBean;
+import com.zoesap.borrowclient.data.bean.RegisterBean;
+import com.zoesap.borrowclient.data.bean.ResetPasswordBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class RemoteDataSource implements DataSource {
             retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.BaseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(setCookiesClient(context))
+                    .client(setClient(context))
                     .build();
         }
     }
@@ -56,12 +58,12 @@ public class RemoteDataSource implements DataSource {
         return client;
     }
 
-    private OkHttpClient setCookiesClient(Context context) {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new AddCookiesInterceptor(context))
-                .build();
-        return client;
-    }
+//    private OkHttpClient setCookiesClient(Context context) {
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .addInterceptor(new AddCookiesInterceptor(context))
+//                .build();
+//        return client;
+//    }
 
     public static RemoteDataSource getInstance(Context context) {
         if (INSTANCE == null) {
@@ -168,12 +170,6 @@ public class RemoteDataSource implements DataSource {
 
     @Override
     public void login(String account, String password, final LoadCallback<LoginBean> callback) {
-        retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BaseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(setClient(context))
-                .build();
-
         API.LoginService service = retrofit.create(API.LoginService.class);
         Call<LoginBean> call = service.login(account, password);
         call.enqueue(new Callback<LoginBean>() {
@@ -260,6 +256,40 @@ public class RemoteDataSource implements DataSource {
 
             @Override
             public void onFailure(Call<ApplyQualificationBean> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    @Override
+    public void getRegisterResult(String mobileNumber, String password, String verifyPassword, String getCode, String visitCode, final LoadCallback<RegisterBean> callback) {
+        API.RegisterService registerService = retrofit.create(API.RegisterService.class);
+        Call<RegisterBean> call = registerService.register(mobileNumber, mobileNumber, getCode, password, verifyPassword, visitCode);
+        call.enqueue(new Callback<RegisterBean>() {
+            @Override
+            public void onResponse(Call<RegisterBean> call, Response<RegisterBean> response) {
+                callback.onSuccessful(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<RegisterBean> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    @Override
+    public void getResetPasswordResult(String mobile, String resms, String password, String checkpwd, final LoadCallback<ResetPasswordBean> callback) {
+        final API.ResetPasswordService resetPasswordService = retrofit.create(API.ResetPasswordService.class);
+        Call<ResetPasswordBean> call = resetPasswordService.resetPassword(mobile, resms, password, checkpwd);
+        call.enqueue(new Callback<ResetPasswordBean>() {
+            @Override
+            public void onResponse(Call<ResetPasswordBean> call, Response<ResetPasswordBean> response) {
+                callback.onSuccessful(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ResetPasswordBean> call, Throwable t) {
                 callback.onFailure(t);
             }
         });

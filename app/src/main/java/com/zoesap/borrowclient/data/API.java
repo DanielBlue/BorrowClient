@@ -10,6 +10,8 @@ import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.bean.MyLoanBean;
 import com.zoesap.borrowclient.data.bean.MyRecommendBean;
+import com.zoesap.borrowclient.data.bean.RegisterBean;
+import com.zoesap.borrowclient.data.bean.ResetPasswordBean;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -91,5 +93,25 @@ public interface API {
                                                                      @Field("loan_status") String loan_status,
                                                                      @Field("loan_house") String loan_house,
                                                                      @Field("id") String id);
+    }
+
+    interface RegisterService{
+        @FormUrlEncoded
+        @POST("user/regmobile")
+        Call<RegisterBean> register(@Field("mobile") String mobile,
+                                    @Field("name") String name,
+                                    @Field("smscode") String smscode,
+                                    @Field("password") String password,
+                                    @Field("password_confirm") String password_confirm,
+                                    @Field("incode") String incode);
+    }
+
+    interface ResetPasswordService {
+        @FormUrlEncoded
+        @POST("user/setpwd")
+        Call<ResetPasswordBean> resetPassword(@Field("mobile") String mobile,
+                                              @Field("resms") String resms,
+                                              @Field("password") String password,
+                                              @Field("checkpwd") String checkpwd);
     }
 }

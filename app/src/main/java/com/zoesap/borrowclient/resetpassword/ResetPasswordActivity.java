@@ -1,46 +1,50 @@
-package com.zoesap.borrowclient.login;
+package com.zoesap.borrowclient.resetpassword;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.zoesap.borrowclient.BaseActivity;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.Injection;
-import com.zoesap.borrowclient.register.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends AppCompatActivity {
+/**
+ * Created by maoqi on 2017/7/27.
+ */
+
+public class ResetPasswordActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.tb_toolbar)
     Toolbar tbToolbar;
     private FragmentManager mFragmentManager;
-    private LoginFragment mLoginFragment;
+    private ResetPasswordFragment mResetPasswordFragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_reset_password);
         ButterKnife.bind(this);
         initToolbar();
-
         mFragmentManager = getSupportFragmentManager();
-        mLoginFragment = (LoginFragment) mFragmentManager.findFragmentById(R.id.fl_content);
-        if (mLoginFragment==null){
-            mLoginFragment = LoginFragment.newInstance();
-            mFragmentManager.beginTransaction().add(R.id.fl_content,mLoginFragment).commit();
+        mResetPasswordFragment = (ResetPasswordFragment) mFragmentManager.findFragmentById(R.id.fl_content);
+        if (mResetPasswordFragment == null) {
+            mResetPasswordFragment = ResetPasswordFragment.newInstance();
+            mFragmentManager.beginTransaction().add(R.id.fl_content, mResetPasswordFragment).commit();
         }
-        new LoginPresenter(mLoginFragment, Injection.provideRepository(this));
+
+        new ResetPasswordPresenter(mResetPasswordFragment, Injection.provideRepository(this));
+
     }
 
     private void initToolbar() {
@@ -48,21 +52,12 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
-        tvTitle.setText(R.string.login);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return super.onCreateOptionsMenu(menu);
+        tvTitle.setText(R.string.reset_password);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.register:
-                startActivity(RegisterActivity.getStartIntent(this));
-                return true;
             case android.R.id.home:
                 finish();
                 return true;
@@ -73,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public static Intent getStartIntent(Activity activity) {
-        Intent intent = new Intent(activity, LoginActivity.class);
+        Intent intent = new Intent(activity, ResetPasswordActivity.class);
         return intent;
     }
 }

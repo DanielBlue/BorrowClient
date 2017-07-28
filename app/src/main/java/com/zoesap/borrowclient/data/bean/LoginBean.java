@@ -6,6 +6,7 @@ package com.zoesap.borrowclient.data.bean;
 
 public class LoginBean {
 
+
     /**
      * code : 10000
      * info : success

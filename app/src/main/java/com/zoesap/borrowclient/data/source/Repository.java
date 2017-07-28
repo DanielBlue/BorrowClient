@@ -10,6 +10,8 @@ import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.bean.MyRecommendBean;
+import com.zoesap.borrowclient.data.bean.RegisterBean;
+import com.zoesap.borrowclient.data.bean.ResetPasswordBean;
 import com.zoesap.borrowclient.data.source.remote.RemoteDataSource;
 import com.zoesap.borrowclient.data.source.sp.SpHelper;
 import com.zoesap.borrowclient.login.LoginContract;
@@ -97,6 +99,16 @@ public class Repository implements DataSource {
     public void getApplyLoanResult(String loan_income, String loan_status, String loan_house,
                                    String id,LoadCallback<ApplyQualificationBean> callback) {
         mRemoteDataSource.getApplyLoanResult(loan_income, loan_status, loan_house, id,callback);
+    }
+
+    @Override
+    public void getRegisterResult(String mobileNumber, String password, String verifyPassword, String getCode, String visitCode, LoadCallback<RegisterBean> callback) {
+        mRemoteDataSource.getRegisterResult(mobileNumber, password, verifyPassword, getCode, visitCode,callback);
+    }
+
+    @Override
+    public void getResetPasswordResult(String mobile, String resms, String password, String checkpwd, LoadCallback<ResetPasswordBean> callback) {
+        mRemoteDataSource.getResetPasswordResult(mobile, resms, password, checkpwd, callback);
     }
 
     public void cancelMyLoanRequest(String id, LoadCallback<BaseBeanWrapper> callback) {

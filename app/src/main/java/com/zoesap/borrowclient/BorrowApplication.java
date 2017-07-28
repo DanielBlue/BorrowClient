@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 
 public class BorrowApplication extends Application {
     //全局的context
-    private Context appcontext;
+    private static Context appcontext;
     //维护一个线程池
     public static ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
     private boolean mSignIn = false;// 登录标志
@@ -31,17 +31,25 @@ public class BorrowApplication extends Application {
         return mBorrowApplication;
     }
 
-    public static void addActivity(Activity activity){
+    public static void addActivity(Activity activity) {
         activityList.add(activity);
     }
 
-    public static void removeActivity(Activity activity){
+    public static void removeActivity(Activity activity) {
         activityList.remove(activity);
     }
 
-    public static void removeAllActivity(){
-        for(Activity a:activityList){
+    public static void removeAllActivity() {
+        for (Activity a : activityList) {
             a.finish();
+        }
+    }
+
+    public static void destoryActivity(String activityName) {
+        for (Activity a : activityList) {
+            if (a.getClass().getSimpleName().equals(activityName)) {
+                a.finish();
+            }
         }
     }
 
@@ -51,9 +59,9 @@ public class BorrowApplication extends Application {
         appcontext = getApplicationContext();
     }
 
-    public Context getAppcontext() {
+    public static Context getAppcontext() {
         if (appcontext == null) {
-            appcontext = getApplicationContext();
+            appcontext = getInstance().getApplicationContext();
         }
         return appcontext;
     }
@@ -69,4 +77,5 @@ public class BorrowApplication extends Application {
     public void loginout() {
         mSignIn = false;
     }
+
 }

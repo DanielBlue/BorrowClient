@@ -24,7 +24,7 @@ public interface LoginContract {
 
         void showToast(String info);
 
-        void finish();
+        void activityFinish();
 
     }
 }

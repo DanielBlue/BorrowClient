@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,9 +16,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.zoesap.borrowclient.BaseFragment;
-import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.login.LoginContract.View;
+import com.zoesap.borrowclient.resetpassword.ResetPasswordActivity;
 import com.zoesap.borrowclient.util.NullUtils;
 
 import butterknife.BindView;
@@ -44,7 +43,6 @@ public class LoginFragment extends BaseFragment implements View {
     TextView resetPassWrod;
     Unbinder unbinder;
     private LoginContract.Presenter mPresenter;
-    private boolean isFirstLoad = true;
 
     @Nullable
     @Override
@@ -71,10 +69,7 @@ public class LoginFragment extends BaseFragment implements View {
     @Override
     public void onResume() {
         super.onResume();
-        if (isFirstLoad) {
-            mPresenter.start();
-            isFirstLoad = false;
-        }
+        mPresenter.start();
     }
 
     @Override
@@ -96,33 +91,21 @@ public class LoginFragment extends BaseFragment implements View {
     public void onViewClicked(android.view.View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                String telRegex = "[1][3578]\\d{9}";
                 String phone_number = etUsername.getText().toString().trim();
                 String phone_pass = etPassword.getText().toString().trim();
-
-                if (TextUtils.isEmpty(phone_number) || TextUtils.isEmpty(phone_pass)) {
-                    Toast.makeText(BorrowApplication.getInstance().getAppcontext(),
-                            "手机号和密码不能为空!", Toast.LENGTH_LONG).show();
-                } else if (!phone_number.matches(telRegex)) {
-                    Toast.makeText(BorrowApplication.getInstance().getAppcontext(),
-                            "手机号非法", Toast.LENGTH_LONG).show();
-                } else {
-                    mPresenter.login(phone_number,phone_pass);
-                }
+                mPresenter.login(phone_number, phone_pass);
                 break;
             case R.id.resetPassWrod:
-
+                startActivity(ResetPasswordActivity.getStartIntent(getActivity()));
                 break;
         }
     }
 
     @Override
     public void showPreInptAccount(String account) {
-        if (!TextUtils.isEmpty(account)){
-            etUsername.setText(account);
-            Editable editable = etUsername.getText();
-            Selection.setSelection(editable, editable.length());
-        }
+        etUsername.setText(account);
+        Editable editable = etUsername.getText();
+        Selection.setSelection(editable, editable.length());
     }
 
     @Override
@@ -131,7 +114,7 @@ public class LoginFragment extends BaseFragment implements View {
     }
 
     @Override
-    public void finish() {
+    public void activityFinish() {
         getActivity().finish();
     }
 }
