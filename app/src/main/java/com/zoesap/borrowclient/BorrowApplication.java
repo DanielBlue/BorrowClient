@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -57,6 +59,7 @@ public class BorrowApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appcontext = getApplicationContext();
+        CrashReport.initCrashReport(getApplicationContext(), "61a121b2c4", true);
     }
 
     public static Context getAppcontext() {

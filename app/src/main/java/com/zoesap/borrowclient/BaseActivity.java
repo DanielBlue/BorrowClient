@@ -10,6 +10,8 @@ import android.util.Log;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+    public static final String TEST = "TEST";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

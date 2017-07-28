@@ -2,7 +2,6 @@ package com.zoesap.borrowclient.data.source.remote;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.IOException;
@@ -36,9 +35,10 @@ public class SaveCookiesInterceptor implements Interceptor {
         if (!response.headers("set-cookie").isEmpty()) {
             List<String> cookies = response.headers("set-cookie");
             String cookie = encodeCookie(cookies);
-            Log.e("SaveCookiesInterceptor","intercept(SaveCookiesInterceptor.java:40)"
-                    +" 接受到的Interceptor : cookie:"+cookie);
-            saveCookie(request.url().toString(), request.url().host(), cookie);
+            Log.e("SaveCookiesInterceptor", "intercept(SaveCookiesInterceptor.java:40)"
+                    + " 接受到的Interceptor : cookie:" + cookie);
+//            saveCookie(request.url().toString(), request.url().host(), cookie);
+        saveCookie(cookie);
         }
 
         return response;
@@ -73,21 +73,34 @@ public class SaveCookiesInterceptor implements Interceptor {
 
     //保存cookie到本地，这里我们分别为该url和host设置相同的cookie，其中host可选
     //这样能使得该cookie的应用范围更广
-    private void saveCookie(String url, String domain, String cookies) {
+//    private void saveCookie(String url, String domain, String cookies) {
+//        SharedPreferences sp = mContext.getSharedPreferences(COOKIE_PREF, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sp.edit();
+//
+//        if (TextUtils.isEmpty(url)) {
+//            throw new NullPointerException("url is null.");
+//        } else {
+//            editor.putString(url, cookies);
+//        }
+//
+//        if (!TextUtils.isEmpty(domain)) {
+//            editor.putString(domain, cookies);
+//        }
+//
+//        editor.apply();
+//
+//    }
+
+    private void saveCookie(String cookies) {
         SharedPreferences sp = mContext.getSharedPreferences(COOKIE_PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
 
-        if (TextUtils.isEmpty(url)) {
-            throw new NullPointerException("url is null.");
-        } else {
-            editor.putString(url, cookies);
-        }
-
-        if (!TextUtils.isEmpty(domain)) {
-            editor.putString(domain, cookies);
-        }
-
-        editor.apply();
+//        if (TextUtils.isEmpty(url)) {
+//            throw new NullPointerException("url is null.");
+//        } else {
+        editor.putString("cookie", cookies);
+//        }
+        editor.commit();
 
     }
 

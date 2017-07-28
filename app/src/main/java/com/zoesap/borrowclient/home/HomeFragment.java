@@ -14,7 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
@@ -30,11 +33,6 @@ import com.zoesap.borrowclient.util.NullUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by maoqi on 2017/7/18.
@@ -68,6 +66,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     private List<LoanRecommendItemBean.DataBean.ListBean> data = new ArrayList<>();
     private boolean isFirstLoad = true;
     private AlertDialog mAlertDialog;
+
 
     @Nullable
     @Override
@@ -111,10 +110,10 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        if (isFirstLoad) {
-            mPresenter.start();
-            isFirstLoad = false;
-        }
+        mPresenter.start();
+//        if (isFirstLoad) {
+//            isFirstLoad = false;
+//        }
     }
 
     @Override
@@ -135,7 +134,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         mAdapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.rl_house_loan, R.id.rl_loan_fast, R.id.rl_house, R.id.rl_job, R.id.rl_credit,R.id.btn_loan_apply})
+    @OnClick({R.id.rl_house_loan, R.id.rl_loan_fast, R.id.rl_house, R.id.rl_job, R.id.rl_credit, R.id.btn_loan_apply})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_house_loan:
@@ -146,10 +145,10 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 ((HomeActivity) getActivity()).rgGroup.check(R.id.rb_borrow);
                 break;
             case R.id.btn_loan_apply:
-                if (BorrowApplication.getInstance().ismSignIn()){
-                    startActivity(ApplyLoanActivity.getStartIntent(getActivity(),"0",etLoanNum.getText().toString().trim()));
-                }else{
-                    if (mAlertDialog!=null&&!mAlertDialog.isShowing()) {
+                if (BorrowApplication.getInstance().ismSignIn()) {
+                    startActivity(ApplyLoanActivity.getStartIntent(getActivity(), "0", etLoanNum.getText().toString().trim()));
+                } else {
+                    if (mAlertDialog != null && !mAlertDialog.isShowing()) {
                         mAlertDialog.show();
                     }
                 }
