@@ -8,9 +8,6 @@ import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
 import com.zoesap.borrowclient.util.NullUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by maoqi on 2017/7/25.
  */
@@ -40,19 +37,19 @@ public class MyRecommendationPresenter implements MyRecommendationContract.Prese
             public void onSuccessful(MyRecommendBean myRecommendBean) {
                 if (myRecommendBean.getCode() == 10000) {
                     mMyRecommendationView.updateRecommendCode(myRecommendBean.getData().getSalt());
-                    List<MyRecommendBean.DataBean.DatasBean> dataList = new ArrayList<MyRecommendBean.DataBean.DatasBean>();
-                    MyRecommendBean.DataBean.DatasBean bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "0");
-                    dataList.add(bean);
-                    bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "1");
-                    dataList.add(bean);
-                    bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "2");
-                    dataList.add(bean);
-                    bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "3");
-                    dataList.add(bean);
-                    bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "4");
-                    dataList.add(bean);
-
-                    myRecommendBean.getData().setDatas(dataList);
+//                    List<MyRecommendBean.DataBean.DatasBean> dataList = new ArrayList<MyRecommendBean.DataBean.DatasBean>();
+//                    MyRecommendBean.DataBean.DatasBean bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "0");
+//                    dataList.add(bean);
+//                    bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "1");
+//                    dataList.add(bean);
+//                    bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "2");
+//                    dataList.add(bean);
+//                    bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "3");
+//                    dataList.add(bean);
+//                    bean = new MyRecommendBean.DataBean.DatasBean("快速贷款", "2017-03-01", "1000", "4");
+//                    dataList.add(bean);
+//
+//                    myRecommendBean.getData().setDatas(dataList);
 
                     if (myRecommendBean.getData().getDatas() == null
                             || myRecommendBean.getData().getDatas().size() <= 0) {

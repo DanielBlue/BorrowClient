@@ -1,5 +1,7 @@
 package com.zoesap.borrowclient.home;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -14,12 +16,9 @@ import com.zoesap.borrowclient.BaseActivity;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.Injection;
-import com.zoesap.borrowclient.data.bean.LoginBean;
-import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
 import com.zoesap.borrowclient.loan.LoanFragment;
 import com.zoesap.borrowclient.loan.LoanPresenter;
-import com.zoesap.borrowclient.login.LoginActivity;
 import com.zoesap.borrowclient.self.SelfFragment;
 import com.zoesap.borrowclient.self.SelfPresenter;
 
@@ -54,30 +53,8 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initFragments();
-        autoLogin();
         rgGroup = (RadioGroup) findViewById(R.id.rg_group);
         rgGroup.setOnCheckedChangeListener(this);
-    }
-
-    private void autoLogin() {
-        String account = mRepository.getAccountFromSp();
-        String password = mRepository.getPasswordFromSp();
-        mRepository.login(account, password, new DataSource.LoadCallback<LoginBean>() {
-            @Override
-            public void onSuccessful(LoginBean loginBean) {
-                if (loginBean.getCode() != 10000) {
-                    Toast.makeText(HomeActivity.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
-                    startActivity(LoginActivity.getStartIntent(HomeActivity.this));
-                } else {
-                    BorrowApplication.getInstance().setmSignIn(true);
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
     }
 
     private void initFragments() {
@@ -144,6 +121,11 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
         }
         mCurrentIndex = index;
+    }
+
+    public static Intent getStartIntent(Activity activity) {
+        Intent intent = new Intent(activity, HomeActivity.class);
+        return intent;
     }
 
     @Override
