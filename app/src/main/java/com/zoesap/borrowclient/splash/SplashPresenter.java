@@ -31,7 +31,7 @@ public class SplashPresenter implements SplashContract.Presenter {
         String password = mRepository.getPasswordFromSp();
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)) {
             autoLogin(account, password);
-        }else {
+        } else {
             mSplashView.getParentActivity().finish();
         }
     }
