@@ -5,20 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.zoesap.borrowclient.BaseActivity;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.Injection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoanDetailActivity extends AppCompatActivity {
+public class LoanDetailActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;

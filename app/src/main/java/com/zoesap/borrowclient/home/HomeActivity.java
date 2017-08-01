@@ -35,7 +35,6 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @BindView(R.id.rb_self)
     RadioButton rbSelf;
     @BindView(R.id.rg_group)
-    public
     RadioGroup rgGroup;
 
     private FragmentManager mFragmentManager;
@@ -66,10 +65,19 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction
-                .add(R.id.fl_content, mHomeFragment)
+                .add(R.id.fl_content, mHomeFragment, String.valueOf(0))
                 .commit();
         mRepository = Injection.provideRepository(this);
         new HomePresenter(mHomeFragment, mRepository);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Fragment fragment = mFragmentManager.findFragmentByTag(String.valueOf(mCurrentIndex));
+        if (!(fragment != null && fragment.isAdded() && fragment.isVisible())) {
+            mFragmentManager.beginTransaction().add(R.id.fl_content, fragment, String.valueOf(mCurrentIndex)).commit();
+        }
     }
 
     @Override
@@ -104,7 +112,7 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             mFragmentTransaction.show(mFragments[index]).commit();
 
         } else {
-            mFragmentTransaction.add(R.id.fl_content, mFragments[index]).commit();
+            mFragmentTransaction.add(R.id.fl_content, mFragments[index], String.valueOf(index)).commit();
             switch (index) {
                 case 0:
                     new HomePresenter((HomeFragment) mFragments[index], mRepository);
@@ -121,6 +129,12 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
         }
         mCurrentIndex = index;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     public static Intent getStartIntent(Activity activity) {

@@ -18,11 +18,13 @@ import com.zoesap.borrowclient.util.NullUtils;
 
 public class SplashFragment extends BaseFragment implements SplashContract.View {
     private SplashContract.Presenter mPresenter;
+    private Activity activity;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_splash,null);
+        activity = getActivity();
+        return inflater.inflate(R.layout.fragment_splash, null);
     }
 
     @Override
@@ -42,6 +44,11 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
 
     @Override
     public Activity getParentActivity() {
-        return getActivity();
+        if (activity != null)
+            return activity;
+        else if (isAdded())
+            return getActivity();
+        else
+            throw new NullPointerException(String.valueOf("SplashFragment is detached"));
     }
 }

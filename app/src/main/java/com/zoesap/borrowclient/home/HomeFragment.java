@@ -66,7 +66,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     private HomeContract.Presenter mPresenter;
     private LoanRecommendListAdapter mAdapter;
     private List<LoanRecommendItemBean.DataBean.ListBean> data = new ArrayList<>();
-    private boolean isFirstLoad = true;
     private AlertDialog mAlertDialog;
 
 
@@ -113,9 +112,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     public void onResume() {
         super.onResume();
         mPresenter.start();
-//        if (isFirstLoad) {
-//            isFirstLoad = false;
-//        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.zoesap.borrowclient.setting;
 
+import android.app.Activity;
+
 import com.zoesap.borrowclient.BasePresenter;
 import com.zoesap.borrowclient.BaseView;
 
@@ -13,5 +15,8 @@ public interface SettingContract {
     }
 
     interface View extends BaseView<Presenter> {
+        Activity getParentActivity();
+
+        void showVersionCode(String version);
     }
 }

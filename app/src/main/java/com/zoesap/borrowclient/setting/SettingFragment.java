@@ -1,5 +1,6 @@
 package com.zoesap.borrowclient.setting;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
@@ -31,18 +33,31 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
     RelativeLayout rlAboutCompany;
     @BindView(R.id.rl_exit)
     RelativeLayout rlExit;
+    @BindView(R.id.rl_check_update)
+    RelativeLayout rlCheckUpdate;
+    @BindView(R.id.tv_version_code)
+    TextView tvVersionCode;
+
     Unbinder unbinder;
     private SettingContract.Presenter mPresenter;
     private String[] items = {"退出当前账号", "关闭好借贷"};
     private String[] closeItems = {"关闭好借贷"};
     private AlertDialog mAlertDialog;
+    private Activity mActivity;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, null);
+        mActivity = getActivity();
         unbinder = ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
     }
 
     private void initDialog() {
@@ -95,7 +110,7 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
         unbinder.unbind();
     }
 
-    @OnClick({R.id.rl_about_company, R.id.rl_exit})
+    @OnClick({R.id.rl_about_company, R.id.rl_exit, R.id.rl_check_update})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_about_company:
@@ -107,6 +122,24 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
                     mAlertDialog.show();
                 }
                 break;
+            case R.id.rl_check_update:
+
+                break;
         }
+    }
+
+    @Override
+    public Activity getParentActivity() {
+        if (getActivity() != null)
+            return getActivity();
+        else if (mActivity != null)
+            return mActivity;
+        else
+            return null;
+    }
+
+    @Override
+    public void showVersionCode(String version) {
+        tvVersionCode.setText(version);
     }
 }

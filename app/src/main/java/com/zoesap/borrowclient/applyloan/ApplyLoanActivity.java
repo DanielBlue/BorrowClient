@@ -9,11 +9,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.zoesap.borrowclient.BaseActivity;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.applyinfo.ApplyInfoFragment;
 import com.zoesap.borrowclient.applyinfo.ApplyInfoPresenter;
@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
  * Created by maoqi on 2017/7/25.
  */
 
-public class ApplyLoanActivity extends AppCompatActivity {
+public class ApplyLoanActivity extends BaseActivity {
     public final String TAG_APPLY_INFO = "tag_apply_info";
     public final String TAG_APPLY_QUALIFICATION = "tag_apply_qualification";
     public final String TAG_APPLY_RESULT = "tag_apply_result";

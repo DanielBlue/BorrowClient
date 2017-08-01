@@ -2,7 +2,6 @@ package com.zoesap.borrowclient.login;
 
 import android.net.ParseException;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.gson.JsonParseException;
 import com.zoesap.borrowclient.BorrowApplication;
@@ -76,11 +75,10 @@ public class LoginPresenter implements LoginContract.Presenter {
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e("LoginPresenter", "onFailure(LoginPresenter.java:67):" + t.getMessage());
                 if (t instanceof JsonParseException
                         || t instanceof JSONException
                         || t instanceof ParseException) {
-                    mLoginView.toastInfo(R.string.phone_num_or_password_error);
+                mLoginView.toastInfo(R.string.data_errror);
                 } else if (t instanceof UnknownHostException
                         || t instanceof ConnectException) {
                     mLoginView.toastInfo(R.string.net_error);

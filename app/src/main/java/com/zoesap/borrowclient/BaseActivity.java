@@ -15,12 +15,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BorrowApplication.addActivity(this);
-        Log.d("BaseActivity", getClass().getName());
+        Log.d("BaseActivity", "onCreate: " + getClass().getSimpleName());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("BaseActivity", "onResume: " + getClass().getSimpleName());
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("BaseActivity", "onDestroy: " + getClass().getSimpleName());
         BorrowApplication.removeActivity(this);
     }
 

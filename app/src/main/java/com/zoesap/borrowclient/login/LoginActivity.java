@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.zoesap.borrowclient.BaseActivity;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.Injection;
 import com.zoesap.borrowclient.register.RegisterActivity;
@@ -18,7 +18,7 @@ import com.zoesap.borrowclient.register.RegisterActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;

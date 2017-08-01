@@ -11,14 +11,13 @@
     <application
         android:name=".BorrowApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".splash.SplashActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
@@ -30,56 +29,45 @@
 
         <activity
             android:name=".home.HomeActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".chooseloan.ChooseLoanActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".loandetail.LoanDetailActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".login.LoginActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".myloan.MyLoanActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".myrecommendation.MyRecommendationActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".setting.SettingActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".applyloan.ApplyLoanActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".aboutus.AboutUsActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize"></activity>
         <activity
             android:name=".register.RegisterActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".resetpassword.ResetPasswordActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|adjustResize" />
     </application>

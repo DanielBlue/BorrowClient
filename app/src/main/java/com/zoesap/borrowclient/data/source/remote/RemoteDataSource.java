@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.zoesap.borrowclient.BuildConfig;
 import com.zoesap.borrowclient.Constants;
 import com.zoesap.borrowclient.data.API;
 import com.zoesap.borrowclient.data.bean.ApplyInfoBean;
@@ -24,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by maoqi on 2017/7/18.
@@ -44,26 +45,26 @@ public class RemoteDataSource implements DataSource {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.BaseUrl)
-                    .addConverterFactory(GsonConverterFactory.create())
+//                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(CustomConverterFactory.create())
                     .client(setClient(context))
                     .build();
         }
     }
 
     private OkHttpClient setClient(Context context) {
-        OkHttpClient client = new OkHttpClient.Builder()
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(new AddCookiesInterceptor(context))
-                .addInterceptor(new SaveCookiesInterceptor(context))
-                .build();
-        return client;
-    }
+                .addInterceptor(new SaveCookiesInterceptor(context));
 
-//    private OkHttpClient setCookiesClient(Context context) {
-//        OkHttpClient client = new OkHttpClient.Builder()
-//                .addInterceptor(new AddCookiesInterceptor(context))
-//                .build();
-//        return client;
-//    }
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(loggingInterceptor);
+        }
+
+        return builder.build();
+    }
 
     public static RemoteDataSource getInstance(Context context) {
         if (INSTANCE == null) {
