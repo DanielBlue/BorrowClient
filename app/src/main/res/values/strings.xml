@@ -54,4 +54,5 @@
     <string name="check_update">检查更新</string>
     <string name="can_not_find_version_name">不能获取当前版本号</string>
     <string name="version_name">当前版本v</string>
+    <string name="apply_loan">申请贷款</string>
 </resources>

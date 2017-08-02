@@ -26,8 +26,6 @@ import com.zoesap.borrowclient.chooseloan.ChooseLoanFragment;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 import com.zoesap.borrowclient.loandetail.LoanDetailActivity;
-import com.zoesap.borrowclient.util.DensityUtils;
-import com.zoesap.borrowclient.util.NullUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +34,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import pers.maoqi.core.util.DensityUtils;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/18.
@@ -191,7 +191,7 @@ public class LoanFragment extends BaseFragment implements LoanContract.View {
     @Override
     public void initLoanList(LoanListItemBean.DataBean bean) {
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 1), 0));
+        rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 5), DensityUtils.dp2px(getActivity(), 5)));
         data.addAll(bean.getList());
         mAdapter = new LoanListAdapter(R.layout.item_loan_list, data);
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

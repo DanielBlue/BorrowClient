@@ -7,7 +7,7 @@ import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 import java.util.List;
 

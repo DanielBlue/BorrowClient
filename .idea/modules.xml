@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BorrowClient.iml" filepath="$PROJECT_DIR$/BorrowClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvpCoreArchitecture/mvpcorearchitecture.iml" filepath="$PROJECT_DIR$/mvpCoreArchitecture/mvpcorearchitecture.iml" />
     </modules>
   </component>
 </project>

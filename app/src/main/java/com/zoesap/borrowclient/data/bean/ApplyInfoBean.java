@@ -13,6 +13,7 @@ public class ApplyInfoBean {
      * location :
      */
 
+
     private int code;
     private DataBean data;
     private String info;

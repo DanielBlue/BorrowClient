@@ -1,4 +1,4 @@
-package com.zoesap.borrowclient.util;
+package pers.maoqi.core.util;
 
 import android.support.annotation.Nullable;
 
@@ -7,6 +7,9 @@ import android.support.annotation.Nullable;
  */
 
 public class NullUtils {
+
+    private NullUtils() {
+    }
 
     private static String format(String template, @Nullable Object... args) {
         template = String.valueOf(template); // null -> "null"

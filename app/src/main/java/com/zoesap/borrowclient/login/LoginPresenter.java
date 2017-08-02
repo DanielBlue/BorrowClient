@@ -9,7 +9,7 @@ import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 import org.json.JSONException;
 

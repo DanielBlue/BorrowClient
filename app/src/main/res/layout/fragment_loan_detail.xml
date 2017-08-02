@@ -362,7 +362,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/color_fd6333">
+        android:background="@color/redhomeitem">
 
         <TextView
             android:layout_width="wrap_content"

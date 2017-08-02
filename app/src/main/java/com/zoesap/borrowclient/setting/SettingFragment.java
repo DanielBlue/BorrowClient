@@ -17,7 +17,7 @@ import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.aboutus.AboutUsActivity;
 import com.zoesap.borrowclient.login.LoginActivity;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

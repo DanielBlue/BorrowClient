@@ -10,7 +10,7 @@ import android.widget.Toast;
  * Created by maoqi on 2017/7/25.
  */
 
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
     private ProgressDialog mProgressDialog;
 
     public void toastInfo(String info) {
@@ -18,10 +18,15 @@ public abstract class BaseFragment extends Fragment{
     }
 
     public void toastInfo(@StringRes int StrId) {
-        Toast.makeText(getActivity(), StrId, Toast.LENGTH_SHORT).show();
+
+        try {
+            Toast.makeText(getActivity(), StrId, Toast.LENGTH_SHORT).show();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+
+        }
 
     }
-
 
     public void showLoadindDialog() {
         if (mProgressDialog == null) {
@@ -40,7 +45,7 @@ public abstract class BaseFragment extends Fragment{
         }
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return getActivity();
     }
 }

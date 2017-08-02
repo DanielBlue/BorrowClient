@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import com.zoesap.borrowclient.data.source.Repository;
 import com.zoesap.borrowclient.data.source.remote.RemoteDataSource;
 import com.zoesap.borrowclient.data.source.sp.SpHelper;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/18.

@@ -17,8 +17,8 @@ import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.MyRecommendListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
 import com.zoesap.borrowclient.data.bean.MyRecommendBean;
-import com.zoesap.borrowclient.util.DensityUtils;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.DensityUtils;
+import pers.maoqi.core.util.NullUtils;
 
 import java.util.ArrayList;
 import java.util.List;

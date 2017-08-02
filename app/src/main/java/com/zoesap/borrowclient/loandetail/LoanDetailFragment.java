@@ -19,7 +19,7 @@ import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.applyloan.ApplyLoanActivity;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.login.LoginActivity;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

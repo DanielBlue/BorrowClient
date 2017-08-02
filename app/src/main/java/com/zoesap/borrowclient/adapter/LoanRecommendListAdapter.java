@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.LoanRecommendItemBean;
-import com.zoesap.borrowclient.util.NullUtils;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/19.

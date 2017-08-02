@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/31.

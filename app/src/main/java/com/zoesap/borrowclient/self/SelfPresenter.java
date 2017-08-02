@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.data.source.Repository;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/18.

@@ -1,4 +1,4 @@
-package com.zoesap.borrowclient.util;
+package pers.maoqi.core.util;
 
 import android.content.Context;
 import android.util.TypedValue;

@@ -22,8 +22,8 @@ import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.ApplyLoanPopupListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
 import com.zoesap.borrowclient.applyloan.ApplyLoanActivity;
-import com.zoesap.borrowclient.util.DensityUtils;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.DensityUtils;
+import pers.maoqi.core.util.NullUtils;
 
 import java.util.Arrays;
 

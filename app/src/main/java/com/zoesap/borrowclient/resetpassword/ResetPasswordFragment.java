@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

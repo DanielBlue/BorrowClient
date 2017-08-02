@@ -5,7 +5,7 @@ import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
 import com.zoesap.borrowclient.loandetail.LoanDetailContract.Presenter;
-import com.zoesap.borrowclient.util.NullUtils;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/20.
