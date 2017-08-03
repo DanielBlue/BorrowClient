@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.MyRecommendListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
@@ -31,7 +31,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/25.
  */
 
-public class MyRecommendationFragment extends BaseFragment implements MyRecommendationContract.View {
+public class MyRecommendationFragment extends CoreBaseFragment implements MyRecommendationContract.View {
     @BindView(R.id.tv_my_recommend_code)
     TextView tvMyRecommendCode;
     @BindView(R.id.tv_recommd_num)

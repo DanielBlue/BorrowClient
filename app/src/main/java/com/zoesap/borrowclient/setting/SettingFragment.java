@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.aboutus.AboutUsActivity;
@@ -28,7 +28,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/25.
  */
 
-public class SettingFragment extends BaseFragment implements SettingContract.View {
+public class SettingFragment extends CoreBaseFragment implements SettingContract.View {
     @BindView(R.id.rl_about_company)
     RelativeLayout rlAboutCompany;
     @BindView(R.id.rl_exit)

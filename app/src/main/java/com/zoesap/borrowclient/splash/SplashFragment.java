@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
 import pers.maoqi.core.util.NullUtils;
 
@@ -16,7 +16,7 @@ import pers.maoqi.core.util.NullUtils;
  * Created by maoqi on 2017/7/31.
  */
 
-public class SplashFragment extends BaseFragment implements SplashContract.View {
+public class SplashFragment extends CoreBaseFragment implements SplashContract.View {
     private SplashContract.Presenter mPresenter;
     private Activity activity;
 

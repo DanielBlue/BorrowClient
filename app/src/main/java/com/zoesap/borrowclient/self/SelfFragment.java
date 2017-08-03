@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.login.LoginActivity;
@@ -28,7 +28,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/18.
  */
 
-public class SelfFragment extends BaseFragment implements SelfContract.View {
+public class SelfFragment extends CoreBaseFragment implements SelfContract.View {
     SelfContract.Presenter mPresenter;
     @BindView(R.id.tv_nickname)
     TextView tvNickname;

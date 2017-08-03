@@ -1,7 +1,7 @@
 package com.zoesap.borrowclient.loan;
 
-import com.zoesap.borrowclient.BasePresenter;
-import com.zoesap.borrowclient.BaseView;
+import pers.maoqi.core.CoreBasePresenter;
+import pers.maoqi.core.CoreBaseView;
 import com.zoesap.borrowclient.data.bean.ChooseLoanTypeBean;
 import com.zoesap.borrowclient.data.bean.LoanListItemBean;
 
@@ -20,7 +20,7 @@ public interface LoanContract {
     }
 
 
-    interface Presenter extends BasePresenter {
+    interface Presenter extends CoreBasePresenter {
         void loadChooseLoanBeanList();
 
         void loadLoanBeanList();
@@ -37,7 +37,7 @@ public interface LoanContract {
                               ListLoadMoreListener listener);
     }
 
-    interface View extends BaseView<Presenter> {
+    interface View extends CoreBaseView<Presenter> {
         void initPopupWindow(ChooseLoanTypeBean.DataBean bean);
 
         void initLoanList(LoanListItemBean.DataBean bean);

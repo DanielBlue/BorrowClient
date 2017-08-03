@@ -16,7 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.AdapterContract;
 import com.zoesap.borrowclient.adapter.LoanListAdapter;
@@ -41,7 +41,7 @@ import pers.maoqi.core.util.NullUtils;
  * Created by maoqi on 2017/7/18.
  */
 
-public class LoanFragment extends BaseFragment implements LoanContract.View {
+public class LoanFragment extends CoreBaseFragment implements LoanContract.View {
     @BindView(R.id.bt_type_one)
     Button btTypeOne;
     @BindView(R.id.bt_type_two)
@@ -161,7 +161,21 @@ public class LoanFragment extends BaseFragment implements LoanContract.View {
     public void setNewData(LoanListItemBean.DataBean bean) {
         data.clear();
         data.addAll(bean.getList());
-        mAdapter.setNewData(data);
+        if (mAdapter != null) {
+            mAdapter.setNewData(data);
+        }else {
+            rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
+            rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 5), DensityUtils.dp2px(getActivity(), 5)));
+            mAdapter = new LoanListAdapter(R.layout.item_loan_list, data);
+            mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    startActivity(LoanDetailActivity.getStartIntent(getActivity(), data.get(position).getId()));
+                }
+            });
+            mAdapter.setOnLoadMoreListener(mLoadMoreListener, rvList);
+            rvList.setAdapter(mAdapter);
+        }
     }
 
     @Override
@@ -171,7 +185,9 @@ public class LoanFragment extends BaseFragment implements LoanContract.View {
 
     @Override
     public void setEnableLoadMore(boolean enable) {
-        mAdapter.setEnableLoadMore(false);
+        if (mAdapter != null) {
+            mAdapter.setEnableLoadMore(false);
+        }
     }
 
     @Override

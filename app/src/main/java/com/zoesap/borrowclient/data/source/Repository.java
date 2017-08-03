@@ -13,13 +13,15 @@ import com.zoesap.borrowclient.data.bean.MyRecommendBean;
 import com.zoesap.borrowclient.data.bean.RegisterBean;
 import com.zoesap.borrowclient.data.bean.ResetPasswordBean;
 import com.zoesap.borrowclient.data.source.remote.RemoteDataSource;
-import com.zoesap.borrowclient.data.source.sp.SpHelper;
 import com.zoesap.borrowclient.login.LoginContract;
 
 import java.util.List;
 
+import pers.maoqi.core.sp.SpHelper;
+
 /**
  * Created by maoqi on 2017/7/18.
+ *
  */
 
 public class Repository implements DataSource {

@@ -1,7 +1,7 @@
 package com.zoesap.borrowclient.loandetail;
 
-import com.zoesap.borrowclient.BasePresenter;
-import com.zoesap.borrowclient.BaseView;
+import pers.maoqi.core.CoreBasePresenter;
+import pers.maoqi.core.CoreBaseView;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 
 /**
@@ -9,10 +9,10 @@ import com.zoesap.borrowclient.data.bean.LoanDetailBean;
  */
 
 public interface LoanDetailContract {
-    interface Presenter extends BasePresenter {
+    interface Presenter extends CoreBasePresenter {
     }
 
-    interface View extends BaseView<Presenter> {
+    interface View extends CoreBaseView<Presenter> {
         void updateView(LoanDetailBean.DataBean dataBean);
     }
 }

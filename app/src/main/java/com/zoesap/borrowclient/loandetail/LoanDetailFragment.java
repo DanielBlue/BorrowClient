@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.applyloan.ApplyLoanActivity;
@@ -30,7 +30,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/20.
  */
 
-public class LoanDetailFragment extends BaseFragment implements LoanDetailContract.View {
+public class LoanDetailFragment extends CoreBaseFragment implements LoanDetailContract.View {
     @BindView(R.id.tv_loan_title)
     TextView tvLoanTitle;
     @BindView(R.id.tv_loan_type)

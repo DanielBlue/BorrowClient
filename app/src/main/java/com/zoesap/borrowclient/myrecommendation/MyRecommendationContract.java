@@ -1,7 +1,7 @@
 package com.zoesap.borrowclient.myrecommendation;
 
-import com.zoesap.borrowclient.BasePresenter;
-import com.zoesap.borrowclient.BaseView;
+import pers.maoqi.core.CoreBasePresenter;
+import pers.maoqi.core.CoreBaseView;
 import com.zoesap.borrowclient.data.bean.MyRecommendBean;
 
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.List;
  */
 
 public interface MyRecommendationContract {
-    interface Presenter extends BasePresenter {
+    interface Presenter extends CoreBasePresenter {
         void refresh();
     }
 
-    interface View extends BaseView<Presenter> {
+    interface View extends CoreBaseView<Presenter> {
         void refreshProgressDismiss();
 
         void updateRecommendCode(String code);

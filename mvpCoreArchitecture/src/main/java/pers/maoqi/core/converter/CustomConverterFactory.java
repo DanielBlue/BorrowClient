@@ -1,4 +1,4 @@
-package com.zoesap.borrowclient.data.source.remote;
+package pers.maoqi.core.converter;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -14,6 +14,8 @@ import retrofit2.Retrofit;
 
 /**
  * Created by maoqi on 2017/8/1.
+ *
+ * 自定义json解析，适用于服务器返回非RESTful的请求
  */
 
 public final class CustomConverterFactory extends Converter.Factory {

@@ -17,13 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.ApplyLoanPopupListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
 import com.zoesap.borrowclient.applyloan.ApplyLoanActivity;
-import pers.maoqi.core.util.DensityUtils;
-import pers.maoqi.core.util.NullUtils;
 
 import java.util.Arrays;
 
@@ -31,12 +28,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import pers.maoqi.core.CoreBaseFragment;
+import pers.maoqi.core.util.DensityUtils;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/25.
  */
 
-public class ApplyQualificationFragment extends BaseFragment implements ApplyQualificationContract.View {
+public class ApplyQualificationFragment extends CoreBaseFragment implements ApplyQualificationContract.View {
     @BindView(R.id.tv_income)
     TextView tvIncome;
     @BindView(R.id.tv_job)

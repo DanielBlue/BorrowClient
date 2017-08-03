@@ -1,4 +1,4 @@
-package com.zoesap.borrowclient.data.source.remote;
+package pers.maoqi.core.interceptor;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,6 +16,8 @@ import okhttp3.Response;
 
 /**
  * Created by Administrator on 2017/5/3.
+ *
+ * retrofit get cookie from response
  */
 
 public class SaveCookiesInterceptor implements Interceptor {

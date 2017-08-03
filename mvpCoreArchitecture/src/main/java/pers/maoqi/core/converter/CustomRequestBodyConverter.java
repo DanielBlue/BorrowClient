@@ -1,4 +1,4 @@
-package com.zoesap.borrowclient.data.source.remote;
+package pers.maoqi.core.converter;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;

@@ -10,21 +10,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.zoesap.borrowclient.BaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.applyloan.ApplyLoanActivity;
-import pers.maoqi.core.util.NullUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import pers.maoqi.core.CoreBaseFragment;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/25.
  */
 
-public class ApplyInfoFragment extends BaseFragment implements ApplyInfoContract.View {
+public class ApplyInfoFragment extends CoreBaseFragment implements ApplyInfoContract.View {
     @BindView(R.id.et_apply_name)
     EditText etApplyName;
     @BindView(R.id.et_apply_phone_number)

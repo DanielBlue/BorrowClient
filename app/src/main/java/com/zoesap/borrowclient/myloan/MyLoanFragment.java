@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.MyLoanListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
@@ -32,7 +32,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/21.
  */
 
-public class MyLoanFragment extends BaseFragment implements MyLoanContract.View {
+public class MyLoanFragment extends CoreBaseFragment implements MyLoanContract.View {
 
     @BindView(R.id.rv_list)
     RecyclerView rvList;

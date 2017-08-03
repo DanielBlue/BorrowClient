@@ -1,8 +1,8 @@
 package com.zoesap.borrowclient.myloan;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.zoesap.borrowclient.BasePresenter;
-import com.zoesap.borrowclient.BaseView;
+import pers.maoqi.core.CoreBasePresenter;
+import pers.maoqi.core.CoreBaseView;
 
 import java.util.List;
 
@@ -11,13 +11,13 @@ import java.util.List;
  */
 
 public interface MyLoanContract {
-    interface Presenter extends BasePresenter {
+    interface Presenter extends CoreBasePresenter {
         void refreshMyLoanList();
 
         void cancelMyLoanRequest(String id);
     }
 
-    interface View extends BaseView<Presenter> {
+    interface View extends CoreBaseView<Presenter> {
         void loadList(List<MultiItemEntity> dataList);
 
         void refreshProgressDismiss();

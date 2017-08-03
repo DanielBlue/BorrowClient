@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.AdapterContract;
 import com.zoesap.borrowclient.adapter.LoanListAdapter;
@@ -39,7 +39,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/19.
  */
 
-public class ChooseLoanFragment extends BaseFragment implements ChooseLoanContract.View {
+public class ChooseLoanFragment extends CoreBaseFragment implements ChooseLoanContract.View {
     @BindView(R.id.bt_type_one)
     Button btTypeOne;
     @BindView(R.id.bt_type_two)

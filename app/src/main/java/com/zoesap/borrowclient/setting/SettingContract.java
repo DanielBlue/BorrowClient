@@ -2,19 +2,19 @@ package com.zoesap.borrowclient.setting;
 
 import android.app.Activity;
 
-import com.zoesap.borrowclient.BasePresenter;
-import com.zoesap.borrowclient.BaseView;
+import pers.maoqi.core.CoreBasePresenter;
+import pers.maoqi.core.CoreBaseView;
 
 /**
  * Created by maoqi on 2017/7/25.
  */
 
 public interface SettingContract {
-    interface Presenter extends BasePresenter {
+    interface Presenter extends CoreBasePresenter {
         void clearAccountAndPassword();
     }
 
-    interface View extends BaseView<Presenter> {
+    interface View extends CoreBaseView<Presenter> {
         Activity getParentActivity();
 
         void showVersionCode(String version);

@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.AdapterContract;
@@ -40,7 +40,7 @@ import pers.maoqi.core.util.NullUtils;
  * Created by maoqi on 2017/7/18.
  */
 
-public class HomeFragment extends BaseFragment implements HomeContract.View {
+public class HomeFragment extends CoreBaseFragment implements HomeContract.View {
     @BindView(R.id.et_loan_num)
     EditText etLoanNum;
     @BindView(R.id.btn_loan_apply)

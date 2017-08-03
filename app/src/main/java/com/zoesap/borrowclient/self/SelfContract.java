@@ -1,17 +1,17 @@
 package com.zoesap.borrowclient.self;
 
-import com.zoesap.borrowclient.BasePresenter;
-import com.zoesap.borrowclient.BaseView;
+import pers.maoqi.core.CoreBasePresenter;
+import pers.maoqi.core.CoreBaseView;
 
 /**
  * Created by maoqi on 2017/7/18.
  */
 
 interface SelfContract {
-    interface Presenter extends BasePresenter {
+    interface Presenter extends CoreBasePresenter {
     }
 
-    interface View extends BaseView<Presenter> {
+    interface View extends CoreBaseView<Presenter> {
         void setAccount(String account);
 
         void setLoginInfo();

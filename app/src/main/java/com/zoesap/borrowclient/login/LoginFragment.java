@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.zoesap.borrowclient.BaseFragment;
+import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.login.LoginContract.View;
 import com.zoesap.borrowclient.resetpassword.ResetPasswordActivity;
@@ -30,7 +30,7 @@ import butterknife.Unbinder;
  * Created by maoqi on 2017/7/20.
  */
 
-public class LoginFragment extends BaseFragment implements View {
+public class LoginFragment extends CoreBaseFragment implements View {
     @BindView(R.id.et_username)
     EditText etUsername;
     @BindView(R.id.et_password)

@@ -1,4 +1,4 @@
-package com.zoesap.borrowclient;
+package pers.maoqi.core;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.widget.Toast;
  * Created by maoqi on 2017/7/25.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class CoreBaseFragment extends Fragment {
     private ProgressDialog mProgressDialog;
 
     public void toastInfo(String info) {
@@ -18,14 +18,11 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void toastInfo(@StringRes int StrId) {
-
         try {
             Toast.makeText(getActivity(), StrId, Toast.LENGTH_SHORT).show();
         } catch (NullPointerException e) {
             e.printStackTrace();
-
         }
-
     }
 
     public void showLoadindDialog() {
