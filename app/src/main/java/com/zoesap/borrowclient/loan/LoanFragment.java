@@ -16,7 +16,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.AdapterContract;
 import com.zoesap.borrowclient.adapter.LoanListAdapter;
@@ -34,6 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import pers.maoqi.core.CoreBaseFragment;
 import pers.maoqi.core.util.DensityUtils;
 import pers.maoqi.core.util.NullUtils;
 
@@ -163,9 +163,9 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
         data.addAll(bean.getList());
         if (mAdapter != null) {
             mAdapter.setNewData(data);
-        }else {
+        } else {
             rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
-            rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 5), DensityUtils.dp2px(getActivity(), 5)));
+            rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 1), 0));
             mAdapter = new LoanListAdapter(R.layout.item_loan_list, data);
             mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                 @Override
@@ -207,7 +207,7 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
     @Override
     public void initLoanList(LoanListItemBean.DataBean bean) {
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 5), DensityUtils.dp2px(getActivity(), 5)));
+        rvList.addItemDecoration(new SpacesItemDecoration(DensityUtils.dp2px(getActivity(), 1), 0));
         data.addAll(bean.getList());
         mAdapter = new LoanListAdapter(R.layout.item_loan_list, data);
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -286,7 +286,9 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
             @Override
             public void onClick(View v) {
                 btn_credit_on.setBackgroundResource(R.color.color_508ae6);
+                btn_credit_on.setTextColor(getResources().getColor(R.color.white));
                 btn_credit_off.setBackgroundResource(R.color.white);
+                btn_credit_off.setTextColor(getResources().getColor(R.color.color_323232));
                 currentCredit = 1;
             }
         });
@@ -294,7 +296,9 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
             @Override
             public void onClick(View v) {
                 btn_credit_on.setBackgroundResource(R.color.white);
+                btn_credit_on.setTextColor(getResources().getColor(R.color.color_323232));
                 btn_credit_off.setBackgroundResource(R.color.color_508ae6);
+                btn_credit_off.setTextColor(getResources().getColor(R.color.white));
                 currentCredit = 2;
             }
         });
@@ -304,7 +308,9 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
             @Override
             public void onClick(View v) {
                 btn_house_on.setBackgroundResource(R.color.color_508ae6);
+                btn_house_on.setTextColor(getResources().getColor(R.color.white));
                 btn_house_off.setBackgroundResource(R.color.white);
+                btn_house_off.setTextColor(getResources().getColor(R.color.color_323232));
                 currentHouse = 1;
             }
         });
@@ -312,7 +318,9 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
             @Override
             public void onClick(View v) {
                 btn_house_on.setBackgroundResource(R.color.white);
+                btn_house_on.setTextColor(getResources().getColor(R.color.color_323232));
                 btn_house_off.setBackgroundResource(R.color.color_508ae6);
+                btn_house_off.setTextColor(getResources().getColor(R.color.white));
                 currentHouse = 2;
             }
         });

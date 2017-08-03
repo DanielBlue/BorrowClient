@@ -30,9 +30,8 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@color/color_508ae6"
-            android:checked="true"
             android:text="有信用记录"
-            android:textColor="@color/color_323232"
+            android:textColor="@color/white"
             android:textSize="13dp" />
 
         <Button
@@ -74,9 +73,8 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@color/color_508ae6"
-            android:checked="true"
             android:text="有房产"
-            android:textColor="@color/color_323232"
+            android:textColor="@color/white"
             android:textSize="13dp" />
 
         <Button
@@ -86,7 +84,6 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:checked="true"
             android:text="无房产"
             android:textColor="@color/color_323232"
             android:textSize="13dp" />
@@ -109,6 +106,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@color/view_line"
+            android:textColor="@color/white"
             android:text="确定"
             android:textSize="12dp" />
     </LinearLayout>

@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.AdapterContract;
@@ -33,6 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import pers.maoqi.core.CoreBaseFragment;
 import pers.maoqi.core.util.DensityUtils;
 import pers.maoqi.core.util.NullUtils;
 

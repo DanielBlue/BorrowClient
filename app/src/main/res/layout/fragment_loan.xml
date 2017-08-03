@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:hint="请输入贷款金额"
                 android:inputType="number"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="25dp"
@@ -35,7 +35,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="万"
                 android:textColor="@color/view_line"
-                android:textSize="18dp" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/btn_loan_apply"
@@ -45,7 +45,7 @@
                 android:background="@color/color_508ae6"
                 android:text="极速申请"
                 android:textColor="@color/white"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -71,7 +71,7 @@
                 android:layout_marginTop="3dp"
                 android:gravity="center_horizontal"
                 android:text="我有房贷"
-                android:textSize="11dp" />
+                android:textSize="11sp" />
 
             <ImageView
                 android:id="@+id/iv_klzqone"
@@ -99,7 +99,7 @@
                 android:layout_marginTop="3dp"
                 android:gravity="center_horizontal"
                 android:text="我有房产"
-                android:textSize="11dp" />
+                android:textSize="11sp" />
 
             <ImageView
                 android:id="@+id/iv_klzqtwo"
@@ -125,7 +125,7 @@
                 android:layout_marginTop="3dp"
                 android:gravity="center_horizontal"
                 android:text="我有工作"
-                android:textSize="11dp" />
+                android:textSize="11sp" />
 
             <ImageView
                 android:id="@+id/iv_klzqthree"
@@ -151,7 +151,7 @@
                 android:layout_marginTop="3dp"
                 android:gravity="center_horizontal"
                 android:text="我信用好"
-                android:textSize="11dp" />
+                android:textSize="11sp" />
 
             <ImageView
                 android:id="@+id/imv_mineworkfor"

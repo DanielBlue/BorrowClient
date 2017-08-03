@@ -1,136 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/rl_content"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:elevation="5dp">
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:id="@+id/rl_content"
+    <LinearLayout
+        android:id="@+id/ll_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_marginBottom="1px"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="10dp">
 
-        <LinearLayout
-            android:id="@+id/ll_title"
+        <ImageView
+            android:id="@+id/iv_loan_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/iteamimagediy" />
+
+        <TextView
+            android:id="@+id/tv_loan_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="15dp"
+            tools:text="抵押貸" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_title"
+        android:orientation="vertical">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:background="@color/white"
             android:orientation="horizontal"
-            android:paddingBottom="5dp"
-            android:paddingTop="10dp">
-
-            <ImageView
-                android:id="@+id/iv_loan_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/iteamimagediy" />
+            android:paddingBottom="20dp"
+            android:paddingTop="15dp">
 
             <TextView
-                android:id="@+id/tv_loan_title"
+                android:id="@+id/tv_loan_limit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:textColor="@android:color/black"
-                android:textSize="15dp"
-                tools:text="抵押貸" />
-        </LinearLayout>
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/redhomeitem"
+                android:textSize="17sp"
+                tools:text="150-0222" />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_title"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+                android:layout_alignLeft="@+id/tv_loan_limit"
+                android:layout_below="@+id/tv_loan_limit"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:gravity="bottom"
+                android:text="额度范围(万元)"
+                android:textColor="@color/decergreeitem"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tv_loan_limit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/redhomeitem"
-                    android:textSize="17sp"
-                    tools:text="150-0222" />
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/tv_loan_limit"
-                    android:layout_below="@+id/tv_loan_limit"
-                    android:layout_marginTop="10dp"
-                    android:gravity="bottom"
-                    android:text="额度范围(万元)"
-                    android:textColor="@color/decergreeitem"
-                    android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_month_interest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_loan_limit"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/textView3"
+                android:textColor="@color/decergreeitem"
+                android:textSize="12sp"
+                tools:text="月费率3" />
 
-                <TextView
-                    android:id="@+id/tv_month_interest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/tv_loan_limit"
-                    android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@+id/textView3"
-                    android:textColor="@color/decergreeitem"
-                    android:textSize="12sp"
-                    tools:text="月费率3" />
+            <TextView
+                android:id="@+id/textView222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv_month_interest"
+                android:layout_below="@+id/tv_month_interest"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="bottom"
+                android:text="放款时间"
+                android:textColor="@color/decergreeitem"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/textView222"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/tv_month_interest"
-                    android:layout_below="@+id/tv_month_interest"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="bottom"
-                    android:text="放款时间"
-                    android:textColor="@color/decergreeitem"
-                    android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_approval_time_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView222"
+                android:layout_toRightOf="@+id/textView222"
+                android:textColor="@color/bulluhomeitem"
+                android:textSize="12sp"
+                tools:text="12小时" />
 
-                <TextView
-                    android:id="@+id/tv_approval_time_limit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/textView222"
-                    android:layout_toRightOf="@+id/textView222"
-                    android:textColor="@color/bulluhomeitem"
-                    android:textSize="12sp"
-                    tools:text="12小时" />
+            <TextView
+                android:id="@+id/tv_loan_time_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView222"
+                android:layout_below="@+id/textView222"
+                android:textColor="@color/decergreeitem"
+                android:textSize="12sp"
+                tools:text="贷款期限3-6个月" />
 
-                <TextView
-                    android:id="@+id/tv_loan_time_limit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView222"
-                    android:layout_below="@+id/textView222"
-                    android:textColor="@color/decergreeitem"
-                    android:textSize="12sp"
-                    tools:text="贷款期限3-6个月" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/border_red_stroke"
+                android:padding="5dp"
+                android:text="@string/apply_loan"
+                android:textColor="@color/redhomeitem"
+                android:textSize="13sp" />
+        </RelativeLayout>
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/border_red_stroke"
-                    android:padding="5dp"
-                    android:text="@string/apply_loan"
-                    android:textColor="@color/redhomeitem"
-                    android:textSize="13sp" />
-
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
-
-</android.support.v7.widget.CardView>
+</RelativeLayout>

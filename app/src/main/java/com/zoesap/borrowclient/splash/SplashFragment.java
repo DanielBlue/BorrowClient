@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
+
+import pers.maoqi.core.CoreBaseFragment;
 import pers.maoqi.core.util.NullUtils;
+import pers.maoqi.core.util.TimerScheduler;
 
 /**
  * Created by maoqi on 2017/7/31.
@@ -50,5 +52,11 @@ public class SplashFragment extends CoreBaseFragment implements SplashContract.V
             return getActivity();
         else
             throw new NullPointerException(String.valueOf("SplashFragment is detached"));
+    }
+
+    @Override
+    public void onDestroy() {
+        TimerScheduler.getInstance().removeTimerAllTask();
+        super.onDestroy();
     }
 }

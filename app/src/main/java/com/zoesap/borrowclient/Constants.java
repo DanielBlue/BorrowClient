@@ -10,4 +10,5 @@ public class Constants {
 //    测试服务器
     public static final String BaseUrl = "https://cs.haoaj.com.cn/new/";
 
+    public static final String FIRST_LAUCH = "first_lauch";
 }

@@ -1,95 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="5dp">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_content"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_loan_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/color_323232"
+        android:textSize="16dp"
+        tools:text="捷星金融-现金贷款" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
         <TextView
-            android:id="@+id/tv_loan_title"
+            android:id="@+id/tv_loanone_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            tools:text="捷星金融-现金贷款"
-            android:textColor="@color/color_323232"
-            android:textSize="16dp" />
+            android:layout_marginTop="6dp"
+            android:textColor="@color/color_989898"
+            android:textSize="11dp"
+            tools:text="599人申请/3天放款" />
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_loanone_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="6dp"
-                tools:text="599人申请/3天放款"
-                android:textColor="@color/color_989898"
-                android:textSize="11dp" />
-
-            <TextView
-                android:id="@+id/tv_loan_interest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/tv_yueyue"
-                android:gravity="center_vertical"
-                tools:text="2.80%"
-                android:textColor="@color/bull5189e8"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/tv_yueyue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/tv_loan_interest"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:gravity="bottom"
-                android:text="/月"
-                android:textSize="13dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/tv_loan_interest"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="5dp">
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/tv_yueyue"
+            android:gravity="center_vertical"
+            android:textColor="@color/bull5189e8"
+            android:textSize="15dp"
+            tools:text="2.80%" />
 
-            <TextView
-                android:id="@+id/tv_limit_deadline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
-                tools:text="可贷2万-30万   分期还款"
-                android:textColor="@color/color_989898"
-                android:textSize="11dp" />
+        <TextView
+            android:id="@+id/tv_yueyue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_loan_interest"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:gravity="bottom"
+            android:text="/月"
+            android:textSize="13dp" />
 
-            <TextView
-                android:id="@+id/tv_loan_type"
-                android:layout_width="50dp"
-                android:layout_height="15dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:background="@drawable/border_buludeatils"
-                android:gravity="center"
-                tools:text="无抵押"
-                android:textColor="@color/view_line"
-                android:textSize="8dp" />
+    </RelativeLayout>
 
-        </RelativeLayout>
-    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="5dp">
 
-</android.support.v7.widget.CardView>
+        <TextView
+            android:id="@+id/tv_limit_deadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/color_989898"
+            android:textSize="11dp"
+            tools:text="可贷2万-30万   分期还款" />
+
+        <TextView
+            android:id="@+id/tv_loan_type"
+            android:layout_width="50dp"
+            android:layout_height="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/border_buludeatils"
+            android:gravity="center"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="8dp"
+            tools:text="无抵押" />
+
+    </RelativeLayout>
+
+</LinearLayout>

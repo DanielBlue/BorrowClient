@@ -7,7 +7,12 @@ import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
+import com.zoesap.borrowclient.home.HomeActivity;
+
+import java.util.TimerTask;
+
 import pers.maoqi.core.util.NullUtils;
+import pers.maoqi.core.util.TimerScheduler;
 
 /**
  * Created by maoqi on 2017/7/31.
@@ -24,15 +29,19 @@ public class SplashPresenter implements SplashContract.Presenter {
         mSplashView.setPresent(this);
     }
 
-
     @Override
     public void start() {
+        TimerScheduler.getInstance().addTimerTask(new TimerTask() {
+            @Override
+            public void run() {
+                mSplashView.getParentActivity().startActivity(HomeActivity.getStartIntent(mSplashView.getParentActivity()));
+                mSplashView.getParentActivity().finish();
+            }
+        },2000);
         String account = mRepository.getAccountFromSp();
         String password = mRepository.getPasswordFromSp();
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)) {
             autoLogin(account, password);
-        } else {
-            mSplashView.getParentActivity().finish();
         }
     }
 
@@ -45,12 +54,11 @@ public class SplashPresenter implements SplashContract.Presenter {
                 } else {
                     BorrowApplication.getInstance().setmSignIn(true);
                 }
-                mSplashView.getParentActivity().finish();
             }
 
             @Override
             public void onFailure(Throwable t) {
-                mSplashView.getParentActivity().finish();
+
             }
         });
     }
