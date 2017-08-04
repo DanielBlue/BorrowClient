@@ -77,6 +77,7 @@ public class LoanPresenter implements LoanContract.Presenter {
                                 int credit,
                                 int house) {
         Log.e("ChooseLoanPresenter", "refreshBeanList(ChooseLoanPresenter.java:76)" + loantype + career + credit + house);
+        mLoanView.showLoadindDialog();
         mLoanView.setEnableLoadMore(false);
         mRepository.getLoanList(loantype, career, credit, house, 1,
                 new DataSource.LoadCallback<LoanListItemBean.DataBean>() {
@@ -85,19 +86,21 @@ public class LoanPresenter implements LoanContract.Presenter {
                         if (dataBean.getList() != null && dataBean.getList().size() > 0) {
                             mLoanView.showList();
                             mLoanView.setNewData(dataBean);
-                            mLoanView.setRefreshing(false);
                             if (dataBean.getPagetotal() <= 1) {
                                 mLoanView.setEnableLoadMore(false);
                             }
                         } else {
                             mLoanView.showNoData();
                         }
+                        mLoanView.loadingDialogDismiss();
+                        mLoanView.setRefreshing(false);
                     }
 
                     @Override
                     public void onFailure(Throwable t) {
                         mLoanView.toastInfo(R.string.net_error);
                         mLoanView.setRefreshing(false);
+                        mLoanView.loadingDialogDismiss();
                     }
                 });
     }

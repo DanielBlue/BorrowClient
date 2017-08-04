@@ -1,9 +1,11 @@
 package com.zoesap.borrowclient.myloan;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,14 +14,11 @@ import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.adapter.MyLoanListAdapter;
 import com.zoesap.borrowclient.adapter.SpacesItemDecoration;
 import com.zoesap.borrowclient.data.bean.MyLoanBean;
 import com.zoesap.borrowclient.loandetail.LoanDetailActivity;
-import pers.maoqi.core.util.DensityUtils;
-import pers.maoqi.core.util.NullUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +26,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import pers.maoqi.core.CoreBaseFragment;
+import pers.maoqi.core.util.DensityUtils;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/21.
@@ -43,6 +45,7 @@ public class MyLoanFragment extends CoreBaseFragment implements MyLoanContract.V
     private List<MultiItemEntity> dataList = new ArrayList<>();
     private MyLoanContract.Presenter mPresenter;
     private boolean isFirst = true;
+    private AlertDialog alertDialog;
 
     @Nullable
     @Override
@@ -62,7 +65,7 @@ public class MyLoanFragment extends CoreBaseFragment implements MyLoanContract.V
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.tv_item_cancel:
-                        cancelMyLoanRequest(((MyLoanBean.DataBean.ListBean) dataList.get(position)).getId());
+                        showCancelDialog(((MyLoanBean.DataBean.ListBean) dataList.get(position)).getId());
                         break;
                     case R.id.rl_content:
                         startActivity(LoanDetailActivity.getStartIntent(getActivity(),
@@ -81,6 +84,29 @@ public class MyLoanFragment extends CoreBaseFragment implements MyLoanContract.V
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter.bindToRecyclerView(rvList);
         return view;
+    }
+
+    private void showCancelDialog(final String id) {
+        alertDialog = new AlertDialog.Builder(getActivity())
+                .setCancelable(false)
+                .setMessage(R.string.confim_cancel)
+                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        cancelMyLoanRequest(id);
+                        if (alertDialog.isShowing()){
+                            alertDialog.dismiss();
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (alertDialog.isShowing()){
+                            alertDialog.dismiss();
+                        }
+                    }
+                }).show();
     }
 
     private void cancelMyLoanRequest(String id) {

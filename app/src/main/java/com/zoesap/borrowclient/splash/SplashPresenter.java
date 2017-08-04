@@ -31,25 +31,30 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     @Override
     public void start() {
+        autoLogin();
+    }
+
+    private void autoLogin() {
         TimerScheduler.getInstance().addTimerTask(new TimerTask() {
             @Override
             public void run() {
                 mSplashView.getParentActivity().startActivity(HomeActivity.getStartIntent(mSplashView.getParentActivity()));
                 mSplashView.getParentActivity().finish();
             }
-        },2000);
+        }, 2000);
         String account = mRepository.getAccountFromSp();
         String password = mRepository.getPasswordFromSp();
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)) {
-            autoLogin(account, password);
+            autoLoginRequest(account, password);
         }
     }
 
-    private void autoLogin(String account, String password) {
+    private void autoLoginRequest(String account, String password) {
         mRepository.login(account, password, new DataSource.LoadCallback<LoginBean>() {
             @Override
             public void onSuccessful(LoginBean loginBean) {
                 if (loginBean.getCode() != 10000) {
+                    mRepository.savePassword2Sp("");
                     mSplashView.toastInfo(loginBean.getInfo());
                 } else {
                     BorrowApplication.getInstance().setmSignIn(true);

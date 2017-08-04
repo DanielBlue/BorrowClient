@@ -55,4 +55,10 @@
     <string name="can_not_find_version_name">不能获取当前版本号</string>
     <string name="version_name">当前版本v</string>
     <string name="apply_loan">申请贷款</string>
+    <string name="update">更新</string>
+    <string name="update_info">新版本发布，修复bug，运行更流畅</string>
+    <string name="version_update">版本更新</string>
+    <string name="downloading">下载中</string>
+    <string name="latest_version">已是最新版本</string>
+    <string name="confim_cancel">确认要取消借款申请吗</string>
 </resources>

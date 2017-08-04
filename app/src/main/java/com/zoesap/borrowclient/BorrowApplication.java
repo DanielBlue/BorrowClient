@@ -5,11 +5,16 @@ import android.app.Application;
 import android.content.Context;
 
 import com.tencent.bugly.crashreport.CrashReport;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Created by maoqi on 2017/7/20.
@@ -60,6 +65,15 @@ public class BorrowApplication extends Application {
         super.onCreate();
         appcontext = getApplicationContext();
         CrashReport.initCrashReport(getApplicationContext(), "61a121b2c4", true);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoggerInterceptor("OkhttpUtils"))
+                .connectTimeout(5000L, TimeUnit.MILLISECONDS)
+                .readTimeout(5000L, TimeUnit.MILLISECONDS)
+                //其他配置
+                .build();
+
+        OkHttpUtils.initClient(okHttpClient);
     }
 
     public static Context getAppcontext() {

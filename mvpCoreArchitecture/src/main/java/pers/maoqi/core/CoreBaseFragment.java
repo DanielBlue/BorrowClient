@@ -28,6 +28,7 @@ public abstract class CoreBaseFragment extends Fragment {
     public void showLoadindDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setMessage(getResources().getString(R.string.loading));
             mProgressDialog.setCanceledOnTouchOutside(false);
         }
         if (!mProgressDialog.isShowing()) {

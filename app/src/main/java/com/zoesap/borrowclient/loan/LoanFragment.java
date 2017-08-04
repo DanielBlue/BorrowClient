@@ -245,8 +245,13 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
         mPopupWindow1.setContentView(popupView1);
         mPopupWindow1.setBackgroundDrawable(new ColorDrawable(0x00000000));
         mPopupWindow1.setOutsideTouchable(false);
-        mPopupWindow1.setFocusable(true);
         mPopupWindow1.setAnimationStyle(R.style.AnimUpDown);
+        mPopupWindow1.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                mPopupWindow1.setFocusable(false);
+            }
+        });
     }
 
     private void initPopupWindowtwo(final List<ChooseLoanTypeBean.DataBean.CareerBean> data) {
@@ -276,6 +281,12 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
         mPopupWindow2.setOutsideTouchable(false);
         mPopupWindow2.setFocusable(true);
         mPopupWindow2.setAnimationStyle(R.style.AnimUpDown);
+        mPopupWindow2.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                mPopupWindow2.setFocusable(false);
+            }
+        });
     }
 
     private void initPopupWindowthree() {
@@ -347,6 +358,12 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
         mPopupWindow3.setOutsideTouchable(true);
         mPopupWindow3.setFocusable(true);
         mPopupWindow3.setAnimationStyle(R.style.AnimUpDown);
+        mPopupWindow3.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                mPopupWindow3.setFocusable(false);
+            }
+        });
     }
 
 
@@ -359,16 +376,19 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
         switch (view.getId()) {
             case R.id.bt_type_one:
                 if (!mPopupWindow1.isShowing()) {
+                    mPopupWindow1.setFocusable(true);
                     mPopupWindow1.showAsDropDown(btTypeOne);
                 }
                 break;
             case R.id.bt_type_two:
                 if (!mPopupWindow2.isShowing()) {
+                    mPopupWindow2.setFocusable(true);
                     mPopupWindow2.showAsDropDown(btTypeTwo);
                 }
                 break;
             case R.id.bt_type_three:
                 if (!mPopupWindow3.isShowing()) {
+                    mPopupWindow3.setFocusable(true);
                     mPopupWindow3.showAsDropDown(btTypeThree);
                 }
                 break;
