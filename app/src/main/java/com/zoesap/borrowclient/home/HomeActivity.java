@@ -89,7 +89,7 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     private void checkUpdate() {
         OkHttpUtils.post()
-                .url(Constants.BaseUrl + "Article/edition")
+                .url(Constants.BaseUrl + "article/dedition")
                 .addParams("edition", "hjdedition")
                 .build()
                 .execute(new StringCallback() {
@@ -101,12 +101,22 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                     @Override
                     public void onResponse(String response, int id) {
                         if (!TextUtils.isEmpty(response)) {
+                            LogUtils.d("HomeActivity", "onResponse(HomeActivity.java:104)" + response);
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
-                                double version = jsonObject.getJSONObject("data").getDouble("hjdedition");
-                                double app_version = Double.parseDouble(AppUtils.getAppVersion(HomeActivity.this));
-                                if (app_version < version) {
-                                    showUpdateDialog(jsonObject.getJSONObject("data").getString("url"));
+                                if (jsonObject.optInt("code") == 10000) {
+                                    int version = Integer.parseInt(jsonObject.optJSONObject("data")
+                                            .optString("hjdedition")
+                                            .replace(".", "").trim());
+                                    int app_version = Integer.parseInt(AppUtils
+                                            .getAppVersion(HomeActivity.this)
+                                            .replace(".", "").trim());
+                                    String url = jsonObject.optJSONObject("data").optString("url").trim();
+                                    if (app_version < version) {
+                                        if (url != null && !TextUtils.isEmpty(url)) {
+                                            showUpdateDialog(url);
+                                        }
+                                    }
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -253,7 +263,7 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             }
         } else {
             mLoanFragment = new LoanFragment();
-            if (mFragmentManager.findFragmentByTag("1")!=null&&mFragmentManager.findFragmentByTag("1").isAdded()) {
+            if (mFragmentManager.findFragmentByTag("1") != null && mFragmentManager.findFragmentByTag("1").isAdded()) {
                 mFragmentTransaction.remove(mFragmentManager.findFragmentByTag("1"));
             }
             mFragmentTransaction.add(R.id.fl_content, mLoanFragment, String.valueOf(index)).commit();

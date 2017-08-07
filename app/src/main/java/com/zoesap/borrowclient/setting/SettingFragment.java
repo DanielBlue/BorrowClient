@@ -150,7 +150,7 @@ public class SettingFragment extends CoreBaseFragment implements SettingContract
     private void checkUpdate() {
         initUpdateProgressDialog();
         OkHttpUtils.post()
-                .url(Constants.BaseUrl + "Article/edition")
+                .url(Constants.BaseUrl + "article/dedition")
                 .addParams("edition", "hjdedition")
                 .build()
                 .execute(new StringCallback() {
@@ -164,12 +164,20 @@ public class SettingFragment extends CoreBaseFragment implements SettingContract
                         if (!TextUtils.isEmpty(response)) {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
-                                double version = jsonObject.getJSONObject("data").getDouble("hjdedition");
-                                double app_version = Double.parseDouble(AppUtils.getAppVersion(getActivity()));
-                                if (app_version < version) {
-                                    showUpdateDialog(jsonObject.getJSONObject("data").getString("url"));
-                                } else {
-                                    toastInfo(R.string.latest_version);
+                                if (jsonObject.optInt("code") == 10000) {
+                                    int version = Integer.parseInt(jsonObject
+                                            .optJSONObject("data").optString("hjdedition")
+                                            .replace(".", "").trim());
+                                    int app_version = Integer.parseInt(AppUtils
+                                            .getAppVersion(getActivity())
+                                            .replace(".", "").trim());
+                                    String url = jsonObject.optJSONObject("data")
+                                            .optString("url").trim();
+                                    if (app_version < version && url != null && !TextUtils.isEmpty(url)) {
+                                        showUpdateDialog(url);
+                                    } else {
+                                        toastInfo(R.string.latest_version);
+                                    }
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
