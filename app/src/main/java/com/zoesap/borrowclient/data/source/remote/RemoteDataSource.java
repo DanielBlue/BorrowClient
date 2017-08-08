@@ -23,6 +23,7 @@ import com.zoesap.borrowclient.data.source.DataSource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -41,10 +42,8 @@ import retrofit2.Retrofit;
 public class RemoteDataSource implements DataSource {
     private static RemoteDataSource INSTANCE;
     private Retrofit retrofit;
-    private Context context;
 
     private RemoteDataSource(Context context) {
-        this.context = context;
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.BaseUrl)
@@ -60,12 +59,14 @@ public class RemoteDataSource implements DataSource {
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(new AddCookiesInterceptor(context))
-                .addInterceptor(new SaveCookiesInterceptor(context));
+                .addInterceptor(new SaveCookiesInterceptor(context))
+                .readTimeout(5, TimeUnit.SECONDS)
+                .writeTimeout(5, TimeUnit.SECONDS)
+                .connectTimeout(5, TimeUnit.SECONDS);
 
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(loggingInterceptor);
         }
-
         return builder.build();
     }
 
@@ -83,7 +84,7 @@ public class RemoteDataSource implements DataSource {
             @Override
             public void onResponse(Call<MyLoanBean> call, Response<MyLoanBean> response) {
                 MyLoanBean.DataBean dataBean = response.body().getData();
-                List<MultiItemEntity> dataList = new ArrayList<MultiItemEntity>();
+                List<MultiItemEntity> dataList = new ArrayList<>();
                 if (dataBean.getList() == null || dataBean.getList().size() <= 0) {
                     MyLoanBean.DataBean.EmptyBean bean = new MyLoanBean.DataBean.EmptyBean();
                     dataList.add(bean);
