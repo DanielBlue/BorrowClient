@@ -61,4 +61,5 @@
     <string name="downloading">下载中</string>
     <string name="latest_version">已是最新版本</string>
     <string name="confim_cancel">确认要取消借款申请吗</string>
+    <string name="user_info">个人中心</string>
 </resources>
