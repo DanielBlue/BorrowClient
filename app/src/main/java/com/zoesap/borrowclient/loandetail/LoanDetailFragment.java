@@ -13,18 +13,18 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.applyloan.ApplyLoanActivity;
 import com.zoesap.borrowclient.data.bean.LoanDetailBean;
 import com.zoesap.borrowclient.login.LoginActivity;
-import pers.maoqi.core.util.NullUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import pers.maoqi.core.CoreBaseFragment;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/20.
@@ -149,7 +149,7 @@ public class LoanDetailFragment extends CoreBaseFragment implements LoanDetailCo
                             ((LoanDetailActivity) getActivity()).loanId,
                             etLoanNum.getText().toString()));
                 } else {
-                    if (mAlertDialog!=null&&!mAlertDialog.isShowing()) {
+                    if (mAlertDialog != null && !mAlertDialog.isShowing()) {
                         mAlertDialog.show();
                     }
                 }

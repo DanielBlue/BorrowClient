@@ -29,7 +29,7 @@ public class SelfPresenter implements SelfContract.Presenter {
         String account = mRepository.getAccountFromSp();
         if (!TextUtils.isEmpty(mRepository.getAccountFromSp())
                 && BorrowApplication.getInstance().ismSignIn()) {
-            mSelfView.setAccount(account);
+            mSelfView.setAccount("用户名: "+account);
         } else {
             mSelfView.setLoginInfo();
         }

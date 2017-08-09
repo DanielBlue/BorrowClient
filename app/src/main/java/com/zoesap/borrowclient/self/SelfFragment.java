@@ -10,19 +10,19 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import pers.maoqi.core.CoreBaseFragment;
 import com.zoesap.borrowclient.BorrowApplication;
 import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.login.LoginActivity;
 import com.zoesap.borrowclient.myloan.MyLoanActivity;
 import com.zoesap.borrowclient.myrecommendation.MyRecommendationActivity;
 import com.zoesap.borrowclient.setting.SettingActivity;
-import pers.maoqi.core.util.NullUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import pers.maoqi.core.CoreBaseFragment;
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/18.
