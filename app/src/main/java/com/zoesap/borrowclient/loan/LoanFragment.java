@@ -228,17 +228,18 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
         for (ChooseLoanTypeBean.DataBean.LoantypeBean bean : data) {
             list.add(bean.getSval());
         }
-        PopupListAdapter popupListAdapter = new PopupListAdapter(getActivity(), list, new AdapterContract.ListItemClickListener() {
-            @Override
-            public void onItemClickListener(int position) {
-                if (mPopupWindow1.isShowing()) {
-                    currentLoantype = position + 1;
-                    mPopupWindow1.dismiss();
-                    btTypeOne.setText(data.get(position).getSval());
-                    mPresenter.refreshBeanList(currentLoantype, currentCareer, currentCredit, currentHouse);
-                }
-            }
-        });
+        PopupListAdapter popupListAdapter = new PopupListAdapter(getActivity(), list,
+                new AdapterContract.ListItemClickListener() {
+                    @Override
+                    public void onItemClickListener(int position) {
+                        if (mPopupWindow1.isShowing()) {
+                            currentLoantype = position + 1;
+                            mPopupWindow1.dismiss();
+                            btTypeOne.setText(data.get(position).getSval());
+                            mPresenter.refreshBeanList(currentLoantype, currentCareer, currentCredit, currentHouse);
+                        }
+                    }
+                });
         rvPopupList.setAdapter(popupListAdapter);
         mPopupWindow1 = new PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);

@@ -1,6 +1,5 @@
 package com.zoesap.borrowclient.self;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -41,7 +40,6 @@ public class SelfFragment extends CoreBaseFragment implements SelfContract.View 
     @BindView(R.id.rl_setting)
     RelativeLayout rlSetting;
     Unbinder unbinder;
-    private ProgressDialog mProgressDialog;
 
     @Nullable
     @Override
