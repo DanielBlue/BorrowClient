@@ -9,12 +9,13 @@ import com.zoesap.borrowclient.R;
 import com.zoesap.borrowclient.data.bean.LoginBean;
 import com.zoesap.borrowclient.data.source.DataSource;
 import com.zoesap.borrowclient.data.source.Repository;
-import pers.maoqi.core.util.NullUtils;
 
 import org.json.JSONException;
 
 import java.net.ConnectException;
 import java.net.UnknownHostException;
+
+import pers.maoqi.core.util.NullUtils;
 
 /**
  * Created by maoqi on 2017/7/20.
@@ -53,6 +54,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             mLoginView.toastInfo(R.string.phone_num_or_password_empty);
             return;
         }
+
         if (!account.matches(telRegex)) {
             mLoginView.toastInfo(R.string.phone_num_error);
             return;
@@ -78,7 +80,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                 if (t instanceof JsonParseException
                         || t instanceof JSONException
                         || t instanceof ParseException) {
-                mLoginView.toastInfo(R.string.data_errror);
+                    mLoginView.toastInfo(R.string.data_errror);
                 } else if (t instanceof UnknownHostException
                         || t instanceof ConnectException) {
                     mLoginView.toastInfo(R.string.net_error);

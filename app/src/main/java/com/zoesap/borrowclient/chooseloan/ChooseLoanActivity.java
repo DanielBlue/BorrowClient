@@ -84,4 +84,5 @@ public class ChooseLoanActivity extends BaseActivity {
         Intent intent = new Intent(activity,ChooseLoanActivity.class);
         return intent;
     }
+
 }

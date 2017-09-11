@@ -44,7 +44,7 @@ public class LogUtils {
         public static int RELEASE_LEVEL = 20;
         public static int DEBUG_LEVEL = 0;
 
-        public static int LEVEL = DEBUG_LEVEL;
+        public static int LEVEL = RELEASE_LEVEL;
 
         public static int B = 17;
         public static int X = 16;

@@ -88,6 +88,7 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
         btTypeTwo.setText("职业");
         btTypeThree.setText("筛选");
         tvTitle.setText(R.string.all_loan);
+
         return view;
     }
 
