@@ -76,7 +76,10 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         rgGroup = (RadioGroup) findViewById(R.id.rg_group);
         rgGroup.setOnCheckedChangeListener(this);
         checkUpdate();
+
     }
+
+
 
     private void initUpdateProgressDialog() {
         updateDialog = new ProgressDialog(HomeActivity.this);
@@ -231,6 +234,7 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //                    return;
 //                }
                 showFragment(2);
+                break;
         }
     }
 

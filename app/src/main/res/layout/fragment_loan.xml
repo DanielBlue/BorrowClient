@@ -142,7 +142,6 @@
             android:layout_height="80dp"
             android:layout_weight="1"
             android:gravity="center_horizontal">
-
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -152,7 +151,6 @@
                 android:gravity="center_horizontal"
                 android:text="我信用好"
                 android:textSize="11sp" />
-
             <ImageView
                 android:id="@+id/imv_mineworkfor"
                 android:layout_width="wrap_content"
@@ -160,7 +158,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/woxinyongghaothis" />
-
         </RelativeLayout>
 
 

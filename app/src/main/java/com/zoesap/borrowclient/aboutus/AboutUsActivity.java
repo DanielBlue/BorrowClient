@@ -35,20 +35,20 @@ public class AboutUsActivity extends BaseActivity {
     }
 
     private void initToolbar() {
-            setSupportActionBar(tbToolbar);
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-            tvTitle.setText(R.string.about_borrow);
-        }
+        setSupportActionBar(tbToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        tvTitle.setText(R.string.about_borrow);
+    }
 
     @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()) {
-                case android.R.id.home:
-                    finish();
-                    return true;
-            }
-            return super.onOptionsItemSelected(item);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
         }
+        return super.onOptionsItemSelected(item);
+    }
 }

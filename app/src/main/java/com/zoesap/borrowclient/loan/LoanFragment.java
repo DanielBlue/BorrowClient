@@ -242,7 +242,7 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
                     }
                 });
         rvPopupList.setAdapter(popupListAdapter);
-        mPopupWindow1 = new PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT,
+        mPopupWindow1 = new PopupWindow(DensityUtils.dp2px(getActivity(),120),
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         mPopupWindow1.setContentView(popupView1);
         mPopupWindow1.setBackgroundDrawable(new ColorDrawable(0x00000000));
@@ -276,7 +276,7 @@ public class LoanFragment extends CoreBaseFragment implements LoanContract.View 
             }
         });
         rvPopupList2.setAdapter(popupListAdapter);
-        mPopupWindow2 = new PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT,
+        mPopupWindow2 = new PopupWindow(DensityUtils.dp2px(getActivity(),120),
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         mPopupWindow2.setContentView(popupView2);
         mPopupWindow2.setBackgroundDrawable(new ColorDrawable(0x00000000));

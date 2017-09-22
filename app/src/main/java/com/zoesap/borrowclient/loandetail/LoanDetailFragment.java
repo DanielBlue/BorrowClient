@@ -80,9 +80,12 @@ public class LoanDetailFragment extends CoreBaseFragment implements LoanDetailCo
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.login_later, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        startActivity(ApplyLoanActivity.getStartIntent(getActivity(),
+                                ((LoanDetailActivity) getActivity()).loanId,
+                                etLoanNum.getText().toString()));
                         dialog.dismiss();
                     }
                 });
